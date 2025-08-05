@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre a COQUIM - Pioneira em Produtos Ecológicos | Natural 100%</title>
+    <meta name="description"
+        content="Conheça a história da COQUIM desde 1996, pioneira em produtos de fibra de coco. Nossa missão de preservar o meio ambiente substituindo o xaxim por alternativas sustentáveis.">
+    <meta name="keywords" content="sobre coquim, história empresa, xaxim alternativa, fibra de coco, sustentabilidade">
+
+    <style>
+        :root {
+            --primary-green: #2d5a3d;
+            --secondary-green: #4a7c59;
+            --accent-green: #6b9080;
+            --light-green: #a4c3b2;
+            --cream: #f4f1e8;
+            --warm-white: #fefcf7;
+            --text-dark: #2c3e36;
+            --text-light: #6b7c73;
+            --shadow: rgba(45, 90, 61, 0.1);
+            --shadow-hover: rgba(45, 90, 61, 0.2);
+            --gradient-primary: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
+            --gradient-secondary: linear-gradient(135deg, #6b9080 0%, #a4c3b2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 252, 247, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(45, 90, 61, 0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(254, 252, 247, 0.98);
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 270px;
+            height: 75px;
+            margin-right: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: url('./assets/logos/coquim-header-logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 12rem 0 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff" opacity="0.15"/><circle cx="60" cy="70" r="2.5" fill="%23ffffff" opacity="0.08"/></svg>') repeat;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background: var(--cream);
+            padding: 1rem 0;
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb-list a {
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .breadcrumb-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            padding: 4rem 0;
+        }
+
+        .content-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-green);
+            border-radius: 2px;
+        }
+
+        .content-text {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-green);
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-green);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        /* Mission Values */
+        .mission-values {
+            background: var(--cream);
+            padding: 4rem 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light-green);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 2rem;
+                box-shadow: 0 5px 15px var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-year {
+                width: 50px;
+                height: 50px;
+                font-size: 0.8rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon"></div>
+            </a>
+             <ul class="nav-menu" id="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./sobre-nos.html" class="nav-link">Sobre</a></li>
+                <li><a href="./produtos.html" class="nav-link">Produtos</a></li>
+                <li><a href="./xaxim.html" class="nav-link">Xaxim</a></li>
+                <li><a href="./contato.html" class="nav-link">Contato</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Nossa História</h1>
+            <p class="hero-subtitle">Pioneiros em sustentabilidade desde 1996, transformando fibra de coco em soluções
+                ecológicas para jardinagem</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb-list">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>Sobre a Empresa</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-content">
+            <div class="content-area">
+                <!-- Nossa História -->
+                <section class="content-section fade-in">
+                    <h2 class="section-title">Conheça a COQUIM</h2>
+                    <p class="content-text">
+                        A COQUIM nasceu em 1996 com uma missão revolucionária: desenvolver a primeira alternativa
+                        ecológica ao xaxim no Brasil. Desde o início, nossa empresa se dedicou ao processamento
+                        inovador de fibra de coco e látex natural de fontes 100% renováveis.
+                    </p>
+                    <p class="content-text">
+                        Com quase três décadas de experiência, somos pioneiros na criação de produtos que unem
+                        beleza, funcionalidade e sustentabilidade. Nossos produtos despertaram interesse de
+                        órgãos de pesquisa, universidades e ONGs, consolidando nossa posição como referência
+                        em inovação ecológica.
+                    </p>
+
+                    <div class="highlight-box">
+                        <h3>Por que escolhemos a fibra de coco?</h3>
+                        <p>
+                            A fibra de coco é um subproduto abundante e renovável que oferece características
+                            ideais para jardinagem: pH neutro, propriedades fungicidas e bactericidas naturais,
+                            excelente retenção de umidade e aeração. Ao utilizá-la, contribuímos para a
+                            preservação do xaxim (Dicksonia sellowiana), espécie que levava décadas para crescer
+                            e estava sendo devastada pela exploração comercial.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Timeline -->
+                <section class="content-section fade-in">
+                    <h2 class="section-title">Nossa Trajetória</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1996</div>
+                            <div class="timeline-content">
+                                <h3>Fundação da COQUIM</h3>
+                                <p>Criação da primeira linha inovadora de vasos, placas, estacas, adubos e mantas
+                                    feitos de fibra de coco no Brasil, revolucionando o mercado de jardinagem ecológica.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-year">2000</div>
+                            <div class="timeline-content">
+                                <h3>Reconhecimento Internacional</h3>
+                                <p>Finalista do 1º Concurso de Negócios Ambientais da América Latina pelo World
+                                    Resources Institute (WRI),
+                                    sendo reconhecida entre as 8 principais empresas ambientais da região.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-year">2012</div>
+                            <div class="timeline-content">
+                                <h3>Selo Mata Atlântica</h3>
+                                <p>Recebimento do Selo "Mercado Mata Atlântica" de Produto Sustentável, concedido
+                                    pela RBMA/UNESCO durante a RIO+20, validando nosso compromisso com a biodiversidade.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-content">
+                                <h3>Expansão de Parcerias</h3>
+                                <p>Consolidação de parcerias com universidades nacionais e internacionais para
+                                    desenvolvimento de novas tecnologias em produtos ecologicamente corretos.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-content">
+                                <h3>Liderança Sustentável</h3>
+                                <p>Mais de 135 produtos diferentes, presença nacional e reconhecimento como
+                                    empresa líder em soluções sustentáveis para jardinagem no Brasil.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card fade-in">
+                    <span class="icon">🌱</span>
+                    <h3>Números da COQUIM</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">135+</span>
+                            <span class="stat-label">Produtos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">29</span>
+                            <span class="stat-label">Anos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Categorias</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Natural</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card fade-in">
+                    <span class="icon">🏆</span>
+                    <h3>Reconhecimentos</h3>
+                    <p>Finalista WRI 2000, Selo Mata Atlântica UNESCO, parcerias acadêmicas e validação científica
+                        internacional.</p>
+                </div>
+
+                <div class="sidebar-card fade-in">
+                    <span class="icon">🌍</span>
+                    <h3>Impacto Ambiental</h3>
+                    <p>Contribuímos diretamente para a preservação da Dicksonia sellowiana, evitando a exploração
+                        predatória desta espécie ameaçada.</p>
+                </div>
+
+                <div class="sidebar-card fade-in">
+                    <a href="produtos.html" class="btn" style="display: block; margin-top: 1rem;">Conheça Nossos
+                        Produtos</a>
+                    <a href="contato.html" class="btn btn-outline" style="display: block; margin-top: 1rem;">Entre em
+                        Contato</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Mission & Values -->
+    <section class="mission-values">
+        <div class="container">
+            <div class="content-section fade-in">
+                <h2 class="section-title" style="text-align: center;">Missão, Visão e Valores</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🎯</div>
+                        <h3>Missão</h3>
+                        <p>Desenvolver produtos ecológicos inovadores que unem sustentabilidade, funcionalidade e
+                            beleza, contribuindo para a preservação ambiental e oferecendo alternativas renováveis
+                            para jardinagem.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">👁️</div>
+                        <h3>Visão</h3>
+                        <p>Ser reconhecida globalmente como líder em soluções sustentáveis para jardinagem,
+                            expandindo nosso impacto positivo no meio ambiente e na conservação da biodiversidade.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">💚</div>
+                        <h3>Valores</h3>
+                        <p>Sustentabilidade, inovação, qualidade, transparência e compromisso com a preservação
+                            ambiental. Acreditamos que é possível aliar desenvolvimento econômico com responsabilidade
+                            ecológica.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>COQUIM</h3>
+                    <p>
+                        Pioneira em produtos ecológicos para jardinagem desde 1996.
+                        Comprometida com a sustentabilidade e inovação em fibra de coco
+                        e látex natural.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Produtos</h3>
+                    <p><a href="produtos.html">Vasos</a></p>
+                    <p><a href="produtos.html">Placas</a></p>
+                    <p><a href="produtos.html">Estacas</a></p>
+                    <p><a href="produtos.html">Adubos</a></p>
+                    <p><a href="produtos.html">Mantas</a></p>
+                    <p><a href="produtos.html">Kits</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <p><a href="sobre.html">Sobre Nós</a></p>
+                    <p><a href="certificacoes.html">Certificações</a></p>
+                    <p><a href="xaxim.html">E o Xaxim?</a></p>
+                    <p><a href="blog.html">Blog</a></p>
+                    <p><a href="revendedor.html">Seja Revendedor</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>📞 +55 (11) 0000-0000</p>
+                    <p>✉️ contato@coquim.com.br</p>
+                    <p>🌐 www.coquim.com.br</p>
+                    <p>📍 São Paulo, Brasil</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 COQUIM - Orgânico & Sustentável. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

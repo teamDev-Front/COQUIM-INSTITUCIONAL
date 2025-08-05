@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E o Xaxim? - COQUIM | Preservação da Dicksonia Sellowiana</title>
+    <meta name="description"
+        content="Entenda por que a COQUIM desenvolveu alternativas ao xaxim. Conheça a importância da preservação da Dicksonia sellowiana e como contribuímos para a conservação ambiental.">
+    <meta name="keywords"
+        content="xaxim, dicksonia sellowiana, preservação ambiental, alternativa sustentável, mata atlântica, conservação">
+
+
+    <style>
+        :root {
+            --primary-green: #2d5a3d;
+            --secondary-green: #4a7c59;
+            --accent-green: #6b9080;
+            --light-green: #a4c3b2;
+            --cream: #f4f1e8;
+            --warm-white: #fefcf7;
+            --text-dark: #2c3e36;
+            --text-light: #6b7c73;
+            --shadow: rgba(45, 90, 61, 0.1);
+            --shadow-hover: rgba(45, 90, 61, 0.2);
+            --gradient-primary: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
+            --gradient-secondary: linear-gradient(135deg, #6b9080 0%, #a4c3b2 100%);
+            --warning-orange: #e67e22;
+            --danger-red: #c0392b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 252, 247, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(45, 90, 61, 0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(254, 252, 247, 0.98);
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 270px;
+            height: 75px;
+            margin-right: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: url('./assets/logos/coquim-header-logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--danger-red) 0%, var(--warning-orange) 100%);
+            color: white;
+            padding: 12rem 0 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff" opacity="0.15"/><circle cx="60" cy="70" r="2.5" fill="%23ffffff" opacity="0.08"/></svg>') repeat;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-warning {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid white;
+        }
+
+        .breadcrumb {
+            background: var(--cream);
+            padding: 1rem 0;
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb-list a {
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .breadcrumb-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            padding: 4rem 0;
+        }
+
+        .content-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-green);
+            border-radius: 2px;
+        }
+
+        .content-text {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-box {
+            background: rgba(192, 57, 43, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--danger-red);
+            margin: 2rem 0;
+        }
+
+        .alert-box h3 {
+            color: var(--danger-red);
+            margin-bottom: 1rem;
+        }
+
+        .warning-box {
+            background: rgba(230, 126, 34, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--warning-orange);
+            margin: 2rem 0;
+        }
+
+        .warning-box h3 {
+            color: var(--warning-orange);
+            margin-bottom: 1rem;
+        }
+
+        .success-box {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-green);
+            margin: 2rem 0;
+        }
+
+        .success-box h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .comparison-table th {
+            background: var(--primary-green);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--cream);
+        }
+
+        .comparison-table .advantage {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .comparison-table .disadvantage {
+            color: var(--danger-red);
+            font-weight: 600;
+        }
+
+        /* Growth Timeline */
+        .growth-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .growth-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-green);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        /* Impact Section */
+        .impact-section {
+            background: var(--cream);
+            padding: 4rem 0;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .impact-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .impact-title {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .impact-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light-green);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 2rem;
+                box-shadow: 0 5px 15px var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-marker {
+                width: 50px;
+                height: 50px;
+                font-size: 0.8rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+            </a>
+           <ul class="nav-menu" id="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./sobre-nos.html" class="nav-link">Sobre</a></li>
+                <li><a href="./produtos.html" class="nav-link">Produtos</a></li>
+                <li><a href="./xaxim.html" class="nav-link">Xaxim</a></li>
+                <li><a href="./contato.html" class="nav-link">Contato</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">E o Xaxim?</h1>
+            <p class="hero-subtitle">A urgente necessidade de preservar a Dicksonia sellowiana e como a COQUIM contribui
+                para sua conservação</p>
+            <div class="hero-warning">
+                <strong>⚠️ ALERTA AMBIENTAL:</strong> O xaxim (Dicksonia sellowiana) está ameaçado de extinção
+                devido à exploração predatória. Cada produto COQUIM ajuda a preservar esta espécie única da Mata
+                Atlântica.
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb-list">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>E o Xaxim?</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-content">
+            <div class="content-area">
+                <!-- O que é o Xaxim -->
+                <section class="content-section fade-in">
+                    <h2 class="section-title">O que é o Xaxim?</h2>
+                    <p class="content-text">
+                        O xaxim (Dicksonia sellowiana) é uma samambaia arborescente endêmica da Mata Atlântica,
+                        conhecida por sua beleza exuberante e importância ecológica. Durante décadas, foi
+                        amplamente utilizada na jardinagem, especialmente para o cultivo de orquídeas e
+                        plantas epífitas.
+                    </p>
+                    <p class="content-text">
+                        Esta espécie única pode chegar a 10 metros de altura e viver por centenas de anos.
+                        Seu tronco fibroso, formado por raízes adventícias entrelaçadas, possui características
+                        ideais para jardinagem: excelente retenção de umidade, boa aeração e pH ligeiramente ácido.
+                    </p>
+
+                    <div class="alert-box">
+                        <h3>🚨 Situação Crítica</h3>
+                        <p>
+                            A exploração comercial descontrolada do xaxim levou a espécie Dicksonia sellowiana
+                            ao status de ameaçada de extinção. A extração para jardinagem comercial removeu
+                            milhares de exemplares centenários da Mata Atlântica, comprometendo gravemente
+                            as populações naturais.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Crescimento e Exploração -->
+                <section class="content-section fade-in">
+                    <h2 class="section-title">O Crescimento Lento do Xaxim</h2>
+                    <p class="content-text">
+                        Uma das principais razões para a vulnerabilidade do xaxim é seu crescimento extremamente
+                        lento. Compreender esse processo é fundamental para entender a dimensão do problema ambiental.
+                    </p>
+
+                    <div class="growth-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">1º ano</div>
+                            <div class="timeline-content">
+                                <h3>Germinação</h3>
+                                <p>Esporos germinam em condições muito específicas de umidade e temperatura na Mata
+                                    Atlântica.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker">5-8cm</div>
+                            <div class="timeline-content">
+                                <h3>Crescimento Anual</h3>
+                                <p>Taxa de crescimento extremamente baixa: apenas 5-8 centímetros por ano em altura.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker">50+</div>
+                            <div class="timeline-content">
+                                <h3>Maturidade</h3>
+                                <p>Só atinge maturidade reprodutiva após 50-80 anos, quando pode produzir esporos
+                                    viáveis.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker">200+</div>
+                            <div class="timeline-content">
+                                <h3>Exemplares Comerciais</h3>
+                                <p>Xaxins grandes utilizados comercialmente geralmente têm 200+ anos de idade.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h3>⏰ Impacto da Extração</h3>
+                        <p>
+                            Quando um xaxim centenário é extraído para uso comercial, perdemos não apenas
+                            décadas ou séculos de crescimento, mas também um importante elemento do
+                            ecossistema da Mata Atlântica que serve de habitat para diversas outras espécies.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Comparação -->
+                <section class="content-section fade-in">
+                    <h2 class="section-title">Xaxim vs. Fibra de Coco</h2>
+                    <p class="content-text">
+                        A COQUIM desenvolveu produtos de fibra de coco que oferecem características
+                        similares ao xaxim, mas com vantagens significativas para o meio ambiente e para o jardim.
+                    </p>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Xaxim (Dicksonia sellowiana)</th>
+                                <th>Fibra de Coco COQUIM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Impacto Ambiental</strong></td>
+                                <td class="disadvantage">Extração predatória, espécie ameaçada</td>
+                                <td class="advantage">100% sustentável, subproduto renovável</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tempo de Renovação</strong></td>
+                                <td class="disadvantage">200+ anos para crescimento completo</td>
+                                <td class="advantage">Renovável anualmente</td>
+                            </tr>
+                            <tr>
+                                <td><strong>pH</strong></td>
+                                <td>Ligeiramente ácido (6.0-6.5)</td>
+                                <td class="advantage">Neutro (7.0) - ideal para mais plantas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Retenção de Água</strong></td>
+                                <td class="advantage">Excelente</td>
+                                <td class="advantage">Excelente</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Aeração</strong></td>
+                                <td class="advantage">Muito boa</td>
+                                <td class="advantage">Muito boa</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Propriedades Antifúngicas</strong></td>
+                                <td class="advantage">Naturais</td>
+                                <td class="advantage">Naturais</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Disponibilidade</strong></td>
+                                <td class="disadvantage">Escassa e restrita</td>
+                                <td class="advantage">Abundante e contínua</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Custo</strong></td>
+                                <td class="disadvantage">Alto e crescente</td>
+                                <td class="advantage">Acessível e estável</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Durabilidade</strong></td>
+                                <td class="advantage">Longa duração</td>
+                                <td class="advantage">Longa duração</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Biodegradabilidade</strong></td>
+                                <td class="advantage">100% biodegradável</td>
+                                <td class="advantage">100% biodegradável</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Solução COQUIM -->
+                <section class="content-section fade-in">
+                    <h2 class="section-title">A Solução COQUIM</h2>
+                    <p class="content-text">
+                        Desde 1996, a COQUIM se dedica a oferecer alternativas sustentáveis que não comprometem
+                        a qualidade nem a funcionalidade. Nossos produtos de fibra de coco representam uma
+                        evolução natural da jardinagem ecológica.
+                    </p>
+
+                    <div class="success-box">
+                        <h3>🌱 Nossa Contribuição</h3>
+                        <p>
+                            Cada produto COQUIM vendido representa um xaxim que permanece em seu habitat natural,
+                            contribuindo para a preservação da Mata Atlântica e para a recuperação das populações
+                            de Dicksonia sellowiana. Em quase 30 anos de atividade, estimamos ter evitado a
+                            extração de milhares de exemplares centenários.
+                        </p>
+                    </div>
+
+                    <p class="content-text">
+                        A fibra de coco utilizada pela COQUIM é um subproduto da indústria do coco, abundante
+                        e renovável. Ao processar esta fibra com tecnologias avançadas, criamos produtos que
+                        superam o xaxim em muitos aspectos, especialmente na sustentabilidade.
+                    </p>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card fade-in">
+                    <span class="icon">🌳</span>
+                    <h3>Status de Conservação</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Anos para crescer</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5-8cm</span>
+                            <span class="stat-label">Crescimento/ano</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">80%</span>
+                            <span class="stat-label">População perdida</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Crítico</span>
+                            <span class="stat-label">Status IUCN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card fade-in">
+                    <span class="icon">⚠️</span>
+                    <h3>Legislação</h3>
+                    <p>A extração de xaxim está proibida por lei federal desde 2001. O comércio ilegal continua
+                        ameaçando a espécie.</p>
+                </div>
+
+                <div class="sidebar-card fade-in">
+                    <span class="icon">🌍</span>
+                    <h3>Mata Atlântica</h3>
+                    <p>Apenas 12% da Mata Atlântica original permanece, tornando a preservação de cada espécie ainda
+                        mais crítica.</p>
+                </div>
+
+                <div class="sidebar-card fade-in">
+                    <a href="produtos.html" class="btn" style="display: block; margin-top: 1rem;">Conheça Nossas
+                        Alternativas</a>
+                    <a href="sobre.html" class="btn btn-outline" style="display: block; margin-top: 1rem;">Nossa
+                        Missão</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <h2 class="section-title">Nosso Impacto Positivo</h2>
+            <div class="impact-grid">
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">🌱</div>
+                    <h3 class="impact-title">Preservação Direta</h3>
+                    <p class="impact-description">
+                        Cada produto COQUIM vendido significa um xaxim que permanece vivo
+                        em seu habitat natural, contribuindo para a biodiversidade.
+                    </p>
+                </div>
+
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">♻️</div>
+                    <h3 class="impact-title">Economia Circular</h3>
+                    <p class="impact-description">
+                        Transformamos um subproduto agrícola em produtos de alta qualidade,
+                        criando valor a partir de materiais que seriam descartados.
+                    </p>
+                </div>
+
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">🎓</div>
+                    <h3 class="impact-title">Educação Ambiental</h3>
+                    <p class="impact-description">
+                        Conscientizamos jardineiros sobre alternativas sustentáveis,
+                        multiplicando o impacto positivo através da educação.
+                    </p>
+                </div>
+
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">🔬</div>
+                    <h3 class="impact-title">Pesquisa & Desenvolvimento</h3>
+                    <p class="impact-description">
+                        Investimos continuamente em pesquisa para desenvolver produtos
+                        ainda melhores e mais sustentáveis.
+                    </p>
+                </div>
+
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">🌍</div>
+                    <h3 class="impact-title">Impacto Global</h3>
+                    <p class="impact-description">
+                        Nossa missão contribui para os Objetivos de Desenvolvimento
+                        Sustentável da ONU, especialmente na conservação da vida terrestre.
+                    </p>
+                </div>
+
+                <div class="impact-card fade-in">
+                    <div class="impact-icon">🤝</div>
+                    <h3 class="impact-title">Parcerias Estratégicas</h3>
+                    <p class="impact-description">
+                        Colaboramos com universidades e ONGs para maximizar nosso
+                        impacto na conservação ambiental.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>COQUIM</h3>
+                    <p>
+                        Pioneira em produtos ecológicos para jardinagem desde 1996.
+                        Comprometida com a sustentabilidade e preservação da Dicksonia sellowiana.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Conservação</h3>
+                    <p><a href="xaxim.html">E o Xaxim?</a></p>
+                    <p><a href="certificacoes.html">Certificações</a></p>
+                    <p><a href="sobre.html">Nossa Missão</a></p>
+                    <p><a href="produtos.html">Alternativas Sustentáveis</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <p><a href="sobre.html">Sobre Nós</a></p>
+                    <p><a href="produtos.html">Produtos</a></p>
+                    <p><a href="blog.html">Blog</a></p>
+                    <p><a href="revendedor.html">Seja Revendedor</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>📞 +55 (11) 0000-0000</p>
+                    <p>✉️ contato@coquim.com.br</p>
+                    <p>🌐 www.coquim.com.br</p>
+                    <p>📍 São Paulo, Brasil</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 COQUIM - Preservando a natureza através da inovação sustentável.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

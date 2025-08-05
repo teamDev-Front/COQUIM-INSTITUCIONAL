@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COQUIM - Orgânico & Sustentável | Produtos Ecológicos para Jardinagem</title>
+    <meta name="description"
+        content="COQUIM - Pioneira no processamento de fibra de coco e látex natural. Produtos 100% naturais, biodegradáveis para jardinagem sustentável desde 1996.">
+    <meta name="keywords"
+        content="fibra de coco, produtos orgânicos, jardinagem sustentável, vasos ecológicos, adubos naturais">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="COQUIM - Orgânico & Sustentável">
+    <meta property="og:description" content="Produtos ecológicos para jardinagem desde 1996">
+    <meta property="og:type" content="website">
+
+    <style>
+        :root {
+            --primary-green: #2d5a3d;
+            --secondary-green: #4a7c59;
+            --accent-green: #6b9080;
+            --light-green: #a4c3b2;
+            --cream: #f4f1e8;
+            --warm-white: #fefcf7;
+            --text-dark: #2c3e36;
+            --text-light: #6b7c73;
+            --shadow: rgba(45, 90, 61, 0.1);
+            --shadow-hover: rgba(45, 90, 61, 0.2);
+            --gradient-primary: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
+            --gradient-secondary: linear-gradient(135deg, #6b9080 0%, #a4c3b2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(254, 252, 247, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(45, 90, 61, 0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(254, 252, 247, 0.98);
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 270px;
+            height: 75px;
+            margin-right: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: url('./assets/logos/coquim-header-logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* Hero Section with Video Background */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(45, 90, 61, 0.8) 0%, 
+                rgba(74, 124, 89, 0.1) 50%, 
+                rgba(107, 144, 128, 0.4) 100%);
+            z-index: -1;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #a4c3b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff 0%, #f4f1e8 100%);
+            color: var(--primary-green);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255,255,255,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-green);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255,255,255,0.3);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-logo {
+            width: 450px;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.3);
+            background-image: url('./assets/imagens/SEM\ FUNDO\ 1.png');
+            background-size: 80%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: var(--warm-white);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23a4c3b2" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%236b9080" opacity="0.1"/><circle cx="60" cy="70" r="2.5" fill="%234a7c59" opacity="0.1"/></svg>') repeat;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section-subtitle-2 {
+               font-size: 1.3rem;
+            color: #fff;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .timeline {
+            background: linear-gradient(135deg, var(--cream) 0%, #ffffff 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            position: relative;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 1px solid rgba(164, 195, 178, 0.2);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-year {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-right: 2rem;
+            min-width: 90px;
+            text-align: center;
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 8rem 0;
+            background: var(--cream);
+            position: relative;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(164, 195, 178, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(107, 144, 128, 0.1) 0%, transparent 50%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fefcf7 100%);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(164, 195, 178, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(164, 195, 178, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px var(--shadow-hover);
+        }
+
+        .product-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 25px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .product-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .product-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Media Gallery - COMPLETAMENTE REDESENHADA */
+        .media-gallery {
+            padding: 8rem 0;
+            background: var(--warm-white);
+            position: relative;
+        }
+
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .gallery-tab {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--light-green);
+            border-radius: 30px;
+            color: var(--primary-green);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .gallery-tab.active,
+        .gallery-tab:hover {
+            color: white;
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        .gallery-tab.active::before,
+        .gallery-tab:hover::before {
+            left: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item {
+            aspect-ratio: 16/10;
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 3px solid transparent;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px var(--shadow-hover);
+            border-color: var(--light-green);
+        }
+
+        .gallery-item video,
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover video,
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(45, 90, 61, 0.9) 0%, 
+                rgba(74, 124, 89, 0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .gallery-item:hover .gallery-overlay-icon {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.2s;
+        }
+
+        .gallery-item:hover .gallery-overlay-text {
+            transform: translateY(0);
+        }
+
+        .gallery-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: var(--gradient-secondary);
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+            font-weight: 600;
+        }
+
+        .gallery-placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Certifications */
+        .certifications {
+            padding: 8rem 0;
+            background: var(--gradient-primary);
+            color: white;
+            position: relative;
+        }
+
+        .certifications::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff" opacity="0.1"/><circle cx="60" cy="70" r="2.5" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+        }
+
+        .certifications .section-title {
+            color: white;
+        }
+
+        .certifications .section-title::after {
+            background: var(--light-green);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cert-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-card:hover .cert-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Contact */
+        .contact {
+            padding: 8rem 0;
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: linear-gradient(135deg, #ffffff 0%, #fefcf7 100%);
+            padding: 4rem 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 1px solid rgba(164, 195, 178, 0.2);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--primary-green);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid var(--light-green);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #1a2f20 100%);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-logo {
+                width: 250px;
+                height: 250px;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .gallery-tabs {
+                justify-content: center;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2.5rem 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-container {
+                gap: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-green);
+        }
+
+        /* Loading animation for gallery items */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-item {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon"></div>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./sobre-nos.html" class="nav-link">Sobre</a></li>
+                <li><a href="./produtos.html" class="nav-link">Produtos</a></li>
+                <li><a href="./xaxim.html" class="nav-link">Xaxim</a></li>
+                <li><a href="./contato.html" class="nav-link">Contato</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="./assets/videos/video-2-wide-hero.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos HTML5.
+        </video>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Orgânico & Sustentável</h1>
+                <p class="hero-subtitle">Pioneiros em fibra de coco desde 1996</p>
+                <p class="hero-description">
+                    Desenvolvemos produtos ecológicos para jardinagem que unem beleza,
+                    funcionalidade e sustentabilidade. 100% naturais, biodegradáveis
+                    e com compromisso ambiental.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#products" class="btn btn-primary">Nossos Produtos</a>
+                    <a href="#about" class="btn btn-secondary">Conheça Nossa História</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-logo"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Sobre a COQUIM</h2>
+                <p class="section-subtitle">
+                    Uma jornada de quase três décadas dedicada à sustentabilidade
+                    e inovação em produtos ecológicos
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content fade-in">
+                    <h3>Nossa Missão</h3>
+                    <p>
+                        Desde 1996, a COQUIM é pioneira no processamento de fibra de coco
+                        e látex natural de fontes renováveis, desenvolvendo produtos que
+                        respeitam o meio ambiente sem abrir mão da qualidade e funcionalidade.
+                    </p>
+                    <p>
+                        Nossos produtos atraem o interesse de órgãos de pesquisa, universidades
+                        e ONGs, consolidando nosso compromisso com a inovação sustentável e
+                        parcerias acadêmicas para o desenvolvimento de tecnologias ecologicamente corretas.
+                    </p>
+                </div>
+                <div class="timeline fade-in">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1996</div>
+                        <div class="timeline-content">
+                            <strong>Fundação</strong><br>
+                            Início das atividades com linha inovadora de produtos de fibra de coco
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <strong>Reconhecimento</strong><br>
+                            Finalista do 1º Concurso de Negócios Ambientais da América Latina (WRI)
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2012</div>
+                        <div class="timeline-content">
+                            <strong>Certificação</strong><br>
+                            Selo "Mercado Mata Atlântica" de Produto Sustentável na RIO+20
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <strong>Presente</strong><br>
+                            Liderança em produtos ecológicos para jardinagem no Brasil
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Nossos Produtos</h2>
+                <p class="section-subtitle">
+                    Linha completa de produtos 100% naturais, biodegradáveis e com pH neutro
+                </p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card fade-in">
+                    <div class="product-icon">🌱</div>
+                    <h3>Adubos Orgânicos</h3>
+                    <p>
+                        Adubos de fibra de coco que retêm umidade e são naturalmente
+                        bactericidas e fungicidas, proporcionando nutrição ideal para suas plantas.
+                    </p>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-icon">🪴</div>
+                    <h3>Vasos & Cachepots</h3>
+                    <p>
+                        Cachepots, vasos e vasos de parede que combinam beleza estética
+                        com funcionalidade ecológica para seu jardim.
+                    </p>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-icon">🌿</div>
+                    <h3>Estacas & Mantas</h3>
+                    <p>
+                        Estacas, mantas e placas para cultivo que oferecem suporte natural
+                        e sustentável para o crescimento das plantas.
+                    </p>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-icon">🎋</div>
+                    <h3>Kits para Jardinagem</h3>
+                    <p>
+                        Kits completos para jardinagem e paisagismo, ideais para quem
+                        busca soluções práticas e ecológicas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Gallery - NOVA VERSÃO MELHORADA -->
+    <section class="media-gallery" id="media">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Nossa Galeria</h2>
+                <p class="section-subtitle">
+                    Conheça nossos processos, equipe e participação em feiras através de vídeos e fotos
+                </p>
+            </div>
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-category="all">Todos</button>
+                <button class="gallery-tab" data-category="process">Processo de Fabricação</button>
+                <button class="gallery-tab" data-category="team">Equipe</button>
+                <button class="gallery-tab" data-category="events">Feiras & Eventos</button>
+                <button class="gallery-tab" data-category="products">Produtos</button>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Processo de Fabricação -->
+                <div class="gallery-item" data-category="process">
+                    <video muted preload="metadata">
+                        <source src="./assets/videos/video-1-vertical.mp4" type="video/mp4">
+                    </video>
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">▶️</div>
+                        <div class="gallery-overlay-text">Processo de Fabricação</div>
+                    </div>
+                </div>
+
+                <!-- Equipe -->
+                <div class="gallery-item" data-category="team">
+                    <img src="./assets/imagens/equipe.JPG" alt="Nossa Equipe" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">👥</div>
+                        <div class="gallery-overlay-text">Nossa Equipe</div>
+                    </div>
+                </div>
+
+                <!-- Feiras & Eventos -->
+                <div class="gallery-item" data-category="events">
+                    <video muted preload="metadata">
+                        <source src="./assets/videos/video-4-comercial-vertical.mp4" type="video/mp4">
+                    </video>
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">🏪</div>
+                        <div class="gallery-overlay-text">Feiras & Eventos</div>
+                    </div>
+                </div>
+
+                <!-- Produtos -->
+                <div class="gallery-item" data-category="products">
+                    <img src="./assets/imagens/produtos-1.JPG" alt="Nossos Produtos" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">🌱</div>
+                        <div class="gallery-overlay-text">Nossos Produtos</div>
+                    </div>
+                </div>
+
+                <!-- Linha de Produção -->
+                <div class="gallery-item" data-category="process">
+                    <video muted preload="metadata">
+                        <source src="./assets/videos/video-3-wide-mix.mp4" type="video/mp4">
+                    </video>
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">⚙️</div>
+                        <div class="gallery-overlay-text">Linha de Produção</div>
+                    </div>
+                </div>
+
+                <!-- Exposições -->
+                <div class="gallery-item" data-category="events">
+                    <img src="./assets/imagens/exposicoes.JPG" alt="Exposições" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">🎪</div>
+                        <div class="gallery-overlay-text">Exposições</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications" id="certifications">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Certificações & Reconhecimentos</h2>
+                <p class="section-subtitle-2">
+                    Nosso compromisso com a sustentabilidade reconhecido por instituições nacionais e internacionais
+                </p>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">🏆</div>
+                    <h3>WRI 2000</h3>
+                    <p>
+                        Finalista do 1º Concurso de Negócios Ambientais da América Latina
+                        pelo World Resources Institute
+                    </p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">🌳</div>
+                    <h3>Mata Atlântica</h3>
+                    <p>
+                        Selo "Mercado Mata Atlântica" de Produto Sustentável concedido
+                        pela RBMA/UNESCO durante a RIO+20 em 2012
+                    </p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">♻️</div>
+                    <h3>100% Natural</h3>
+                    <p>
+                        Produtos certificados como 100% naturais, biodegradáveis
+                        e ecologicamente corretos
+                    </p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-icon">🔬</div>
+                    <h3>Parcerias Acadêmicas</h3>
+                    <p>
+                        Colaboração contínua com universidades e órgãos de pesquisa
+                        para desenvolvimento de tecnologias sustentáveis
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-subtitle">
+                    Estamos prontos para atender suas necessidades em produtos ecológicos para jardinagem
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3 style="color: var(--primary-green); margin-bottom: 2rem;">Informações de Contato</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Endereço</strong><br>
+                            São Paulo, Brasil<br>
+                            <small>Endereço completo a ser atualizado</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Telefone</strong><br>
+                            +55 (11) 0000-0000<br>
+                            <small>Horário comercial: 8h às 18h</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>E-mail</strong><br>
+                            contato@coquim.com.br<br>
+                            <small>Respondemos em até 24h</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <strong>Website</strong><br>
+                            www.coquim.com.br<br>
+                            <small>Catálogo completo online</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <h3 style="color: var(--primary-green); margin-bottom: 2rem;">Envie sua Mensagem</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Assunto</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>COQUIM</h3>
+                    <p>
+                        Pioneira em produtos ecológicos para jardinagem desde 1996.
+                        Comprometida com a sustentabilidade e inovação em fibra de coco
+                        e látex natural.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Nossos Produtos</h3>
+                    <p><a href="#products">Adubos Orgânicos</a></p>
+                    <p><a href="#products">Vasos & Cachepots</a></p>
+                    <p><a href="#products">Estacas & Mantas</a></p>
+                    <p><a href="#products">Kits para Jardinagem</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <p><a href="#about">Sobre Nós</a></p>
+                    <p><a href="#certifications">Certificações</a></p>
+                    <p><a href="#media">Galeria</a></p>
+                    <p><a href="#contact">Contato</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>📞 +55 (11) 0000-0000</p>
+                    <p>✉️ contato@coquim.com.br</p>
+                    <p>🌐 www.coquim.com.br</p>
+                    <p>📍 São Paulo, Brasil</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 COQUIM - Orgânico & Sustentável. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Gallery filter functionality
+        const galleryTabs = document.querySelectorAll('.gallery-tab');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        galleryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                galleryTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                const category = tab.dataset.category;
+
+                // Filter gallery items with smooth animation
+                galleryItems.forEach((item, index) => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, index * 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form handling
+        const contactForm = document.getElementById('contact-form');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+
+            // Here you would typically send the data to your server
+            // For now, we'll just show an alert
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Gallery item click handling with video play/pause
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            const video = item.querySelector('video');
+            
+            item.addEventListener('click', () => {
+                if (video) {
+                    if (video.paused) {
+                        // Pause all other videos first
+                        document.querySelectorAll('.gallery-item video').forEach(v => {
+                            if (v !== video) v.pause();
+                        });
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                }
+            });
+
+            // Show/hide overlay on hover for better UX
+            if (video) {
+                item.addEventListener('mouseenter', () => {
+                    video.currentTime = Math.min(video.duration * 0.1, 3); // Show preview
+                });
+            }
+        });
+
+        // Enhanced parallax effect for hero section
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const heroVideo = document.querySelector('.hero-video');
+            
+            if (hero && heroVideo) {
+                const speed = scrolled * 0.3;
+                heroVideo.style.transform = `translateY(${speed}px) scale(1.1)`;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Initialize gallery to show all items
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial gallery state
+            galleryItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // Ensure hero video is properly loaded
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo) {
+                heroVideo.addEventListener('loadeddata', () => {
+                    heroVideo.style.opacity = '1';
+                });
+            }
+        });
+
+        // Performance optimization: Lazy load gallery videos
+        const lazyLoadObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const video = entry.target.querySelector('video');
+                    if (video && !video.src) {
+                        const source = video.querySelector('source');
+                        if (source && source.src) {
+                            video.load();
+                        }
+                    }
+                    lazyLoadObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            lazyLoadObserver.observe(item);
+        });
+
+        // Add smooth entrance animation for product cards
+        document.querySelectorAll('.product-card, .cert-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Enhanced scroll-to-top functionality
+        const scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.innerHTML = '↑';
+        scrollToTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px var(--shadow);
+        `;
+
+        document.body.appendChild(scrollToTopBtn);
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.opacity = '1';
+                scrollToTopBtn.style.visibility = 'visible';
+            } else {
+                scrollToTopBtn.style.opacity = '0';
+                scrollToTopBtn.style.visibility = 'hidden';
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
