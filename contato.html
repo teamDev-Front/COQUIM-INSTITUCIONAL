@@ -127,6 +127,125 @@
             width: 100%;
         }
 
+        /* Header Actions Container */
+        .header-actions {
+            position: relative;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            z-index: 1001;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(45, 90, 61, 0.2);
+            border-radius: 25px;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .language-btn:hover {
+            background: rgba(45, 90, 61, 0.1);
+            border-color: var(--primary-green);
+            transform: translateY(-1px);
+        }
+
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-text {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .language-selector.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            min-width: 180px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(45, 90, 61, 0.15);
+            border: 1px solid rgba(45, 90, 61, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .language-selector.active .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .language-option:hover {
+            background: var(--cream);
+            color: var(--primary-green);
+        }
+
+        .language-option.active {
+            background: rgba(45, 90, 61, 0.05);
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .language-option .flag-icon {
+            width: 18px;
+            height: 13px;
+        }
+
+        .check-mark {
+            margin-left: auto;
+            color: var(--primary-green);
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .language-option.active .check-mark {
+            opacity: 1;
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -135,7 +254,6 @@
             color: var(--primary-green);
             cursor: pointer;
         }
-
 
         /* Hero Section */
         .hero {
@@ -622,27 +740,54 @@
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav-container">
-            <a href="#home" class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon"></div>
             </a>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="./sobre-nos.html" class="nav-link">Sobre</a></li>
-                <li><a href="./produtos.html" class="nav-link">Produtos</a></li>
-                <li><a href="./xaxim.html" class="nav-link">Xaxim</a></li>
-                <li><a href="./contato.html" class="nav-link">Contato</a></li>
+                <li><a href="./index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+                <li><a href="./sobre-nos.html" class="nav-link" data-i18n="nav.about">Sobre</a></li>
+                <li><a href="./produtos.html" class="nav-link" data-i18n="nav.products">Produtos</a></li>
+                <li><a href="./xaxim.html" class="nav-link" data-i18n="nav.xaxim">Xaxim</a></li>
+                <li><a href="./contato.html" class="nav-link" data-i18n="nav.contact">Contato</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <div class="header-actions">
+                <!-- Language Selector -->
+                <div class="language-selector" id="language-selector">
+                    <button class="language-btn" id="language-btn">
+                        <img src="./assets/imagens/brasil.png" alt="PT" class="flag-icon">
+                        <span class="language-text">PT</span>
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="language-dropdown">
+                        <a href="#" class="language-option active" data-lang="pt">
+                            <img src="./assets/imagens/brasil.png"
+                                alt="Português" class="flag-icon">
+                            <span>Português</span>
+                            <span class="check-mark">✓</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="en">
+                            <img src="./assets/imagens/eua.png" alt="English" class="flag-icon">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="./assets/imagens/espanha.png" alt="Español" class="flag-icon">
+                            <span>Español</span>
+                        </a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            </div>
         </nav>
     </header>
-
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Fale Conosco</h1>
-            <p class="hero-subtitle">Estamos prontos para atender suas necessidades e esclarecer todas as suas dúvidas
-                sobre nossos produtos ecológicos</p>
+            <h1 class="hero-title" data-i18n="hero.title">Fale Conosco</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">Estamos prontos para atender suas necessidades e esclarecer todas as suas dúvidas sobre nossos produtos ecológicos</p>
         </div>
     </section>
 
@@ -650,9 +795,9 @@
     <section class="breadcrumb">
         <div class="breadcrumb-container">
             <div class="breadcrumb-list">
-                <a href="index.html">Home</a>
+                <a href="index.html" data-i18n="breadcrumb.home">Home</a>
                 <span>›</span>
-                <span>Contato</span>
+                <span data-i18n="breadcrumb.contact">Contato</span>
             </div>
         </div>
     </section>
@@ -662,68 +807,68 @@
         <div class="main-content">
             <!-- Contact Information -->
             <div class="content-section fade-in">
-                <h2 class="section-title">Informações de Contato</h2>
+                <h2 class="section-title" data-i18n="contact.info.title">Informações de Contato</h2>
 
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">📍</div>
                         <div class="contact-details">
-                            <h3>Endereço</h3>
-                            <p class="highlight">São Paulo - SP, Brasil</p>
-                            <p>Região Metropolitana</p>
-                            <p><small>Endereço completo fornecido mediante contato</small></p>
+                            <h3 data-i18n="contact.info.address.title">Endereço</h3>
+                            <p class="highlight" data-i18n="contact.info.address.location">São Paulo - SP, Brasil</p>
+                            <p data-i18n="contact.info.address.region">Região Metropolitana</p>
+                            <p><small data-i18n="contact.info.address.note">Endereço completo fornecido mediante contato</small></p>
                         </div>
                     </div>
 
                     <div class="contact-item">
                         <div class="contact-icon">📞</div>
                         <div class="contact-details">
-                            <h3>Telefone</h3>
+                            <h3 data-i18n="contact.info.phone.title">Telefone</h3>
                             <p class="highlight">+55 (11) 0000-0000</p>
-                            <p>Atendimento comercial</p>
-                            <p><small>Segunda a Sexta: 8h às 18h</small></p>
+                            <p data-i18n="contact.info.phone.description">Atendimento comercial</p>
+                            <p><small data-i18n="contact.info.phone.hours">Segunda a Sexta: 8h às 18h</small></p>
                         </div>
                     </div>
 
                     <div class="contact-item">
                         <div class="contact-icon">✉️</div>
                         <div class="contact-details">
-                            <h3>E-mail</h3>
+                            <h3 data-i18n="contact.info.email.title">E-mail</h3>
                             <p class="highlight">contato@coquim.com.br</p>
-                            <p>Respondemos em até 24 horas</p>
-                            <p><small>Para orçamentos e dúvidas técnicas</small></p>
+                            <p data-i18n="contact.info.email.response">Respondemos em até 24 horas</p>
+                            <p><small data-i18n="contact.info.email.purpose">Para orçamentos e dúvidas técnicas</small></p>
                         </div>
                     </div>
 
                     <div class="contact-item">
                         <div class="contact-icon">🌐</div>
                         <div class="contact-details">
-                            <h3>Website</h3>
+                            <h3 data-i18n="contact.info.website.title">Website</h3>
                             <p class="highlight">www.coquim.com.br</p>
-                            <p>Catálogo completo online</p>
-                            <p><small>Informações técnicas e especificações</small></p>
+                            <p data-i18n="contact.info.website.catalog">Catálogo completo online</p>
+                            <p><small data-i18n="contact.info.website.specs">Informações técnicas e especificações</small></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="office-hours">
-                    <h3>🕒 Horário de Atendimento</h3>
+                    <h3 data-i18n="contact.hours.title">🕒 Horário de Atendimento</h3>
                     <ul class="hours-list">
                         <li>
-                            <span>Segunda a Quinta-feira</span>
+                            <span data-i18n="contact.hours.mon_thu">Segunda a Quinta-feira</span>
                             <span>8h00 às 18h00</span>
                         </li>
                         <li>
-                            <span>Sexta-feira</span>
+                            <span data-i18n="contact.hours.fri">Sexta-feira</span>
                             <span>8h00 às 17h00</span>
                         </li>
                         <li>
-                            <span>Sábado</span>
+                            <span data-i18n="contact.hours.sat">Sábado</span>
                             <span>9h00 às 13h00</span>
                         </li>
                         <li>
-                            <span>Domingo e Feriados</span>
-                            <span>Fechado</span>
+                            <span data-i18n="contact.hours.sun">Domingo e Feriados</span>
+                            <span data-i18n="contact.hours.closed">Fechado</span>
                         </li>
                     </ul>
                 </div>
@@ -731,65 +876,65 @@
 
             <!-- Contact Form -->
             <div class="content-section fade-in">
-                <h2 class="section-title">Envie sua Mensagem</h2>
+                <h2 class="section-title" data-i18n="form.title">Envie sua Mensagem</h2>
 
                 <div id="success-message" class="success-message">
-                    ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
+                    <span data-i18n="form.success">✅ Mensagem enviada com sucesso! Entraremos em contato em breve.</span>
                 </div>
 
                 <form class="contact-form" id="contact-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Nome Completo *</label>
+                            <label for="name" data-i18n="form.name">Nome Completo *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">E-mail *</label>
+                            <label for="email" data-i18n="form.email">E-mail *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="phone">Telefone</label>
+                            <label for="phone" data-i18n="form.phone">Telefone</label>
                             <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999">
                         </div>
                         <div class="form-group">
-                            <label for="company">Empresa</label>
-                            <input type="text" id="company" name="company" placeholder="Opcional">
+                            <label for="company" data-i18n="form.company">Empresa</label>
+                            <input type="text" id="company" name="company" data-i18n="form.company.placeholder::placeholder" placeholder="Opcional">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">Assunto *</label>
+                        <label for="subject" data-i18n="form.subject">Assunto *</label>
                         <select id="subject" name="subject" required>
-                            <option value="">Selecione o assunto</option>
-                            <option value="duvidas-produtos">Dúvidas sobre produtos</option>
-                            <option value="orcamento">Solicitação de orçamento</option>
-                            <option value="seja-revendedor">Quero ser revendedor</option>
-                            <option value="especificacoes-tecnicas">Especificações técnicas</option>
-                            <option value="sustentabilidade">Informações sobre sustentabilidade</option>
-                            <option value="parcerias">Parcerias e colaborações</option>
-                            <option value="imprensa">Imprensa e mídia</option>
-                            <option value="outros">Outros assuntos</option>
+                            <option value="" data-i18n="form.subject.placeholder">Selecione o assunto</option>
+                            <option value="duvidas-produtos" data-i18n="form.subject.product_questions">Dúvidas sobre produtos</option>
+                            <option value="orcamento" data-i18n="form.subject.quote">Solicitação de orçamento</option>
+                            <option value="seja-revendedor" data-i18n="form.subject.reseller">Quero ser revendedor</option>
+                            <option value="especificacoes-tecnicas" data-i18n="form.subject.technical">Especificações técnicas</option>
+                            <option value="sustentabilidade" data-i18n="form.subject.sustainability">Informações sobre sustentabilidade</option>
+                            <option value="parcerias" data-i18n="form.subject.partnerships">Parcerias e colaborações</option>
+                            <option value="imprensa" data-i18n="form.subject.press">Imprensa e mídia</option>
+                            <option value="outros" data-i18n="form.subject.other">Outros assuntos</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Mensagem *</label>
-                        <textarea id="message" name="message" required
+                        <label for="message" data-i18n="form.message">Mensagem *</label>
+                        <textarea id="message" name="message" required data-i18n="form.message.placeholder::placeholder"
                             placeholder="Conte-nos como podemos ajudá-lo. Seja específico sobre suas necessidades ou dúvidas..."></textarea>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-full">
+                        <button type="submit" class="btn btn-full" data-i18n="form.submit">
                             Enviar Mensagem
                         </button>
                     </div>
 
                     <p style="font-size: 0.9rem; color: var(--text-light); text-align: center;">
-                        * Campos obrigatórios<br>
-                        Seus dados estão protegidos e não serão compartilhados com terceiros.
+                        <span data-i18n="form.required">* Campos obrigatórios</span><br>
+                        <span data-i18n="form.privacy">Seus dados estão protegidos e não serão compartilhados com terceiros.</span>
                     </p>
                 </form>
             </div>
@@ -799,46 +944,46 @@
     <!-- Quick Actions -->
     <section class="quick-actions">
         <div class="container">
-            <h2 class="section-title" style="text-align: center;">Como Podemos Ajudar?</h2>
+            <h2 class="section-title" style="text-align: center;" data-i18n="actions.title">Como Podemos Ajudar?</h2>
             <div class="actions-grid">
                 <div class="action-card fade-in">
                     <div class="action-icon">🛒</div>
-                    <h3 class="action-title">Solicitar Orçamento</h3>
-                    <p class="action-description">
+                    <h3 class="action-title" data-i18n="actions.quote.title">Solicitar Orçamento</h3>
+                    <p class="action-description" data-i18n="actions.quote.description">
                         Precisa de grandes quantidades ou produtos específicos?
                         Solicite um orçamento personalizado.
                     </p>
-                    <a href="#" class="btn" onclick="setSubject('orcamento')">Solicitar Orçamento</a>
+                    <a href="#" class="btn" onclick="setSubject('orcamento')" data-i18n="actions.quote.button">Solicitar Orçamento</a>
                 </div>
 
                 <div class="action-card fade-in">
                     <div class="action-icon">🏪</div>
-                    <h3 class="action-title">Seja Revendedor</h3>
-                    <p class="action-description">
+                    <h3 class="action-title" data-i18n="actions.reseller.title">Seja Revendedor</h3>
+                    <p class="action-description" data-i18n="actions.reseller.description">
                         Interessado em revender nossos produtos?
                         Conheça nossas condições comerciais.
                     </p>
-                    <a href="revendedor.html" class="btn">Saiba Mais</a>
+                    <a href="revendedor.html" class="btn" data-i18n="actions.reseller.button">Saiba Mais</a>
                 </div>
 
                 <div class="action-card fade-in">
                     <div class="action-icon">🔬</div>
-                    <h3 class="action-title">Suporte Técnico</h3>
-                    <p class="action-description">
+                    <h3 class="action-title" data-i18n="actions.technical.title">Suporte Técnico</h3>
+                    <p class="action-description" data-i18n="actions.technical.description">
                         Dúvidas sobre aplicação, instalação ou
                         especificações técnicas dos produtos?
                     </p>
-                    <a href="#" class="btn" onclick="setSubject('especificacoes-tecnicas')">Falar com Especialista</a>
+                    <a href="#" class="btn" onclick="setSubject('especificacoes-tecnicas')" data-i18n="actions.technical.button">Falar com Especialista</a>
                 </div>
 
                 <div class="action-card fade-in">
                     <div class="action-icon">🤝</div>
-                    <h3 class="action-title">Parcerias</h3>
-                    <p class="action-description">
+                    <h3 class="action-title" data-i18n="actions.partnerships.title">Parcerias</h3>
+                    <p class="action-description" data-i18n="actions.partnerships.description">
                         Universidades, ONGs e empresas interessadas
                         em parcerias sustentáveis.
                     </p>
-                    <a href="#" class="btn" onclick="setSubject('parcerias')">Propor Parceria</a>
+                    <a href="#" class="btn" onclick="setSubject('parcerias')" data-i18n="actions.partnerships.button">Propor Parceria</a>
                 </div>
             </div>
         </div>
@@ -847,12 +992,12 @@
     <!-- FAQ Section -->
     <section class="faq-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center;">Perguntas Frequentes</h2>
+            <h2 class="section-title" style="text-align: center;" data-i18n="faq.title">Perguntas Frequentes</h2>
             <div class="faq-grid">
                 <div class="faq-column">
                     <div class="faq-item fade-in">
-                        <h3 class="faq-question">Vocês fazem entrega em todo o Brasil?</h3>
-                        <p class="faq-answer">
+                        <h3 class="faq-question" data-i18n="faq.delivery.question">Vocês fazem entrega em todo o Brasil?</h3>
+                        <p class="faq-answer" data-i18n="faq.delivery.answer">
                             Sim, atendemos todo o território nacional através de nossa rede de
                             distribuidores e revendedores autorizados. Para pedidos especiais,
                             consulte condições de frete e prazo de entrega.
@@ -860,8 +1005,8 @@
                     </div>
 
                     <div class="faq-item fade-in">
-                        <h3 class="faq-question">Qual a durabilidade dos produtos de fibra de coco?</h3>
-                        <p class="faq-answer">
+                        <h3 class="faq-question" data-i18n="faq.durability.question">Qual a durabilidade dos produtos de fibra de coco?</h3>
+                        <p class="faq-answer" data-i18n="faq.durability.answer">
                             Nossos produtos têm durabilidade similar ao xaxim tradicional,
                             variando entre 2-5 anos dependendo das condições de uso. São
                             100% biodegradáveis ao final da vida útil.
@@ -869,8 +1014,8 @@
                     </div>
 
                     <div class="faq-item fade-in">
-                        <h3 class="faq-question">Posso visitar a fábrica?</h3>
-                        <p class="faq-answer">
+                        <h3 class="faq-question" data-i18n="faq.visit.question">Posso visitar a fábrica?</h3>
+                        <p class="faq-answer" data-i18n="faq.visit.answer">
                             Visitações são possíveis mediante agendamento prévio. Entre em
                             contato conosco para agendar uma visita técnica e conhecer
                             nosso processo produtivo sustentável.
@@ -880,8 +1025,8 @@
 
                 <div class="faq-column">
                     <div class="faq-item fade-in">
-                        <h3 class="faq-question">Os produtos são realmente melhores que o xaxim?</h3>
-                        <p class="faq-answer">
+                        <h3 class="faq-question" data-i18n="faq.better.question">Os produtos são realmente melhores que o xaxim?</h3>
+                        <p class="faq-answer" data-i18n="faq.better.answer">
                             Nossos produtos oferecem características similares ao xaxim com
                             vantagens importantes: pH neutro, origem sustentável, disponibilidade
                             constante e contribuição para preservação ambiental.
@@ -889,8 +1034,8 @@
                     </div>
 
                     <div class="faq-item fade-in">
-                        <h3 class="faq-question">Vocês oferecem treinamento sobre os produtos?</h3>
-                        <p class="faq-answer">
+                        <h3 class="faq-question" data-i18n="faq.training.question">Vocês oferecem treinamento sobre os produtos?</h3>
+                        <p class="faq-answer" data-i18n="faq.training.answer">
                             Sim, oferecemos palestras e treinamentos para revendedores,
                             jardineiros profissionais e entusiastas. Entre em contato para
                             agendar uma apresentação.
@@ -898,8 +1043,8 @@
                     </div>
 
                     <div class="faq-item fade-in">
-                        <h3 class="faq-question">Como posso obter certificados e laudos técnicos?</h3>
-                        <p class="faq-answer">
+                        <h3 class="faq-question" data-i18n="faq.certificates.question">Como posso obter certificados e laudos técnicos?</h3>
+                        <p class="faq-answer" data-i18n="faq.certificates.answer">
                             Fornecemos toda documentação técnica, certificados de qualidade
                             e laudos laboratoriais. Solicite através do nosso formulário de
                             contato ou e-mail.
@@ -907,8 +1052,8 @@
                     </div>
 
                     <div class="faq-item fade-in">
-                        <h3 class="faq-question">Atendem projetos especiais ou personalizados?</h3>
-                        <p class="faq-answer">
+                        <h3 class="faq-question" data-i18n="faq.custom.question">Atendem projetos especiais ou personalizados?</h3>
+                        <p class="faq-answer" data-i18n="faq.custom.answer">
                             Sim, desenvolvemos soluções customizadas para projetos de
                             paisagismo, jardinagem vertical e aplicações específicas.
                             Consulte nossa equipe técnica.
@@ -922,8 +1067,8 @@
     <!-- Map Section -->
     <section class="map-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center;">Nossa Localização</h2>
-            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+            <h2 class="section-title" style="text-align: center;" data-i18n="map.title">Nossa Localização</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;" data-i18n="map.description">
                 Estamos localizados na região metropolitana de São Paulo,
                 estrategicamente posicionados para atender todo o Brasil.
             </p>
@@ -931,9 +1076,9 @@
             <div class="map-placeholder">
                 <div>
                     🗺️<br>
-                    <strong>Mapa Interativo</strong><br>
-                    <span style="font-size: 1rem;">São Paulo - SP, Brasil</span><br>
-                    <small style="opacity: 0.7;">Integração com Google Maps será implementada aqui</small>
+                    <strong data-i18n="map.interactive">Mapa Interativo</strong><br>
+                    <span style="font-size: 1rem;" data-i18n="map.location">São Paulo - SP, Brasil</span><br>
+                    <small style="opacity: 0.7;" data-i18n="map.integration">Integração com Google Maps será implementada aqui</small>
                 </div>
             </div>
         </div>
@@ -945,44 +1090,457 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>COQUIM</h3>
-                    <p>
+                    <p data-i18n="footer.company.description">
                         Pioneira em produtos ecológicos para jardinagem desde 1996.
                         Comprometida com a sustentabilidade e atendimento de excelência.
                     </p>
                     <br>
-                    <p><strong>Horário de Atendimento:</strong></p>
-                    <p>Segunda a Sexta: 8h às 18h</p>
-                    <p>Sábado: 9h às 13h</p>
+                    <p><strong data-i18n="footer.company.hours_title">Horário de Atendimento:</strong></p>
+                    <p data-i18n="footer.company.weekdays">Segunda a Sexta: 8h às 18h</p>
+                    <p data-i18n="footer.company.saturday">Sábado: 9h às 13h</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Atendimento</h3>
-                    <p><a href="contato.html">Fale Conosco</a></p>
-                    <p><a href="#" onclick="setSubject('orcamento')">Solicitar Orçamento</a></p>
-                    <p><a href="revendedor.html">Seja Revendedor</a></p>
-                    <p><a href="#" onclick="setSubject('especificacoes-tecnicas')">Suporte Técnico</a></p>
+                    <h3 data-i18n="footer.service.title">Atendimento</h3>
+                    <p><a href="contato.html" data-i18n="footer.service.contact">Fale Conosco</a></p>
+                    <p><a href="#" onclick="setSubject('orcamento')" data-i18n="footer.service.quote">Solicitar Orçamento</a></p>
+                    <p><a href="revendedor.html" data-i18n="footer.service.reseller">Seja Revendedor</a></p>
+                    <p><a href="#" onclick="setSubject('especificacoes-tecnicas')" data-i18n="footer.service.support">Suporte Técnico</a></p>
                 </div>
                 <div class="footer-section">
-                    <h3>Empresa</h3>
-                    <p><a href="sobre.html">Sobre Nós</a></p>
-                    <p><a href="produtos.html">Produtos</a></p>
-                    <p><a href="certificacoes.html">Certificações</a></p>
-                    <p><a href="xaxim.html">E o Xaxim?</a></p>
+                    <h3 data-i18n="footer.company.title">Empresa</h3>
+                    <p><a href="sobre.html" data-i18n="footer.company.about">Sobre Nós</a></p>
+                    <p><a href="produtos.html" data-i18n="footer.company.products">Produtos</a></p>
+                    <p><a href="certificacoes.html" data-i18n="footer.company.certifications">Certificações</a></p>
+                    <p><a href="xaxim.html" data-i18n="footer.company.xaxim">E o Xaxim?</a></p>
                 </div>
                 <div class="footer-section">
-                    <h3>Contato Direto</h3>
+                    <h3 data-i18n="footer.contact.title">Contato Direto</h3>
                     <p>📞 +55 (11) 0000-0000</p>
                     <p>✉️ contato@coquim.com.br</p>
                     <p>🌐 www.coquim.com.br</p>
-                    <p>📍 São Paulo, Brasil</p>
+                    <p data-i18n="footer.contact.location">📍 São Paulo, Brasil</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 COQUIM - Orgânico & Sustentável. Todos os direitos reservados.</p>
+                <p data-i18n="footer.copyright">&copy; 2025 COQUIM - Orgânico & Sustentável. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // ========== SISTEMA DE TRADUÇÕES ==========
+        const translations = {
+            pt: {
+                // Navegação
+                'nav.home': 'Home',
+                'nav.about': 'Sobre',
+                'nav.products': 'Produtos',
+                'nav.xaxim': 'Xaxim',
+                'nav.contact': 'Contato',
+
+                // Breadcrumb
+                'breadcrumb.home': 'Home',
+                'breadcrumb.contact': 'Contato',
+
+                // Hero Section
+                'hero.title': 'Fale Conosco',
+                'hero.subtitle': 'Estamos prontos para atender suas necessidades e esclarecer todas as suas dúvidas sobre nossos produtos ecológicos',
+
+                // Informações de Contato
+                'contact.info.title': 'Informações de Contato',
+                'contact.info.address.title': 'Endereço',
+                'contact.info.address.location': 'São Paulo - SP, Brasil',
+                'contact.info.address.region': 'Região Metropolitana',
+                'contact.info.address.note': 'Endereço completo fornecido mediante contato',
+                'contact.info.phone.title': 'Telefone',
+                'contact.info.phone.description': 'Atendimento comercial',
+                'contact.info.phone.hours': 'Segunda a Sexta: 8h às 18h',
+                'contact.info.email.title': 'E-mail',
+                'contact.info.email.response': 'Respondemos em até 24 horas',
+                'contact.info.email.purpose': 'Para orçamentos e dúvidas técnicas',
+                'contact.info.website.title': 'Website',
+                'contact.info.website.catalog': 'Catálogo completo online',
+                'contact.info.website.specs': 'Informações técnicas e especificações',
+
+                // Horários
+                'contact.hours.title': '🕒 Horário de Atendimento',
+                'contact.hours.mon_thu': 'Segunda a Quinta-feira',
+                'contact.hours.fri': 'Sexta-feira',
+                'contact.hours.sat': 'Sábado',
+                'contact.hours.sun': 'Domingo e Feriados',
+                'contact.hours.closed': 'Fechado',
+
+                // Formulário
+                'form.title': 'Envie sua Mensagem',
+                'form.success': '✅ Mensagem enviada com sucesso! Entraremos em contato em breve.',
+                'form.name': 'Nome Completo *',
+                'form.email': 'E-mail *',
+                'form.phone': 'Telefone',
+                'form.company': 'Empresa',
+                'form.company.placeholder': 'Opcional',
+                'form.subject': 'Assunto *',
+                'form.subject.placeholder': 'Selecione o assunto',
+                'form.subject.product_questions': 'Dúvidas sobre produtos',
+                'form.subject.quote': 'Solicitação de orçamento',
+                'form.subject.reseller': 'Quero ser revendedor',
+                'form.subject.technical': 'Especificações técnicas',
+                'form.subject.sustainability': 'Informações sobre sustentabilidade',
+                'form.subject.partnerships': 'Parcerias e colaborações',
+                'form.subject.press': 'Imprensa e mídia',
+                'form.subject.other': 'Outros assuntos',
+                'form.message': 'Mensagem *',
+                'form.message.placeholder': 'Conte-nos como podemos ajudá-lo. Seja específico sobre suas necessidades ou dúvidas...',
+                'form.submit': 'Enviar Mensagem',
+                'form.required': '* Campos obrigatórios',
+                'form.privacy': 'Seus dados estão protegidos e não serão compartilhados com terceiros.',
+
+                // Ações Rápidas
+                'actions.title': 'Como Podemos Ajudar?',
+                'actions.quote.title': 'Solicitar Orçamento',
+                'actions.quote.description': 'Precisa de grandes quantidades ou produtos específicos? Solicite um orçamento personalizado.',
+                'actions.quote.button': 'Solicitar Orçamento',
+                'actions.reseller.title': 'Seja Revendedor',
+                'actions.reseller.description': 'Interessado em revender nossos produtos? Conheça nossas condições comerciais.',
+                'actions.reseller.button': 'Saiba Mais',
+                'actions.technical.title': 'Suporte Técnico',
+                'actions.technical.description': 'Dúvidas sobre aplicação, instalação ou especificações técnicas dos produtos?',
+                'actions.technical.button': 'Falar com Especialista',
+                'actions.partnerships.title': 'Parcerias',
+                'actions.partnerships.description': 'Universidades, ONGs e empresas interessadas em parcerias sustentáveis.',
+                'actions.partnerships.button': 'Propor Parceria',
+
+                // FAQ
+                'faq.title': 'Perguntas Frequentes',
+                'faq.delivery.question': 'Vocês fazem entrega em todo o Brasil?',
+                'faq.delivery.answer': 'Sim, atendemos todo o território nacional através de nossa rede de distribuidores e revendedores autorizados. Para pedidos especiais, consulte condições de frete e prazo de entrega.',
+                'faq.durability.question': 'Qual a durabilidade dos produtos de fibra de coco?',
+                'faq.durability.answer': 'Nossos produtos têm durabilidade similar ao xaxim tradicional, variando entre 2-5 anos dependendo das condições de uso. São 100% biodegradáveis ao final da vida útil.',
+                'faq.visit.question': 'Posso visitar a fábrica?',
+                'faq.visit.answer': 'Visitações são possíveis mediante agendamento prévio. Entre em contato conosco para agendar uma visita técnica e conhecer nosso processo produtivo sustentável.',
+                'faq.better.question': 'Os produtos são realmente melhores que o xaxim?',
+                'faq.better.answer': 'Nossos produtos oferecem características similares ao xaxim com vantagens importantes: pH neutro, origem sustentável, disponibilidade constante e contribuição para preservação ambiental.',
+                'faq.training.question': 'Vocês oferecem treinamento sobre os produtos?',
+                'faq.training.answer': 'Sim, oferecemos palestras e treinamentos para revendedores, jardineiros profissionais e entusiastas. Entre em contato para agendar uma apresentação.',
+                'faq.certificates.question': 'Como posso obter certificados e laudos técnicos?',
+                'faq.certificates.answer': 'Fornecemos toda documentação técnica, certificados de qualidade e laudos laboratoriais. Solicite através do nosso formulário de contato ou e-mail.',
+                'faq.custom.question': 'Atendem projetos especiais ou personalizados?',
+                'faq.custom.answer': 'Sim, desenvolvemos soluções customizadas para projetos de paisagismo, jardinagem vertical e aplicações específicas. Consulte nossa equipe técnica.',
+
+                // Mapa
+                'map.title': 'Nossa Localização',
+                'map.description': 'Estamos localizados na região metropolitana de São Paulo, estrategicamente posicionados para atender todo o Brasil.',
+                'map.interactive': 'Mapa Interativo',
+                'map.location': 'São Paulo - SP, Brasil',
+                'map.integration': 'Integração com Google Maps será implementada aqui',
+
+                // Footer
+                'footer.company.description': 'Pioneira em produtos ecológicos para jardinagem desde 1996. Comprometida com a sustentabilidade e atendimento de excelência.',
+                'footer.company.hours_title': 'Horário de Atendimento:',
+                'footer.company.weekdays': 'Segunda a Sexta: 8h às 18h',
+                'footer.company.saturday': 'Sábado: 9h às 13h',
+                'footer.service.title': 'Atendimento',
+                'footer.service.contact': 'Fale Conosco',
+                'footer.service.quote': 'Solicitar Orçamento',
+                'footer.service.reseller': 'Seja Revendedor',
+                'footer.service.support': 'Suporte Técnico',
+                'footer.company.title': 'Empresa',
+                'footer.company.about': 'Sobre Nós',
+                'footer.company.products': 'Produtos',
+                'footer.company.certifications': 'Certificações',
+                'footer.company.xaxim': 'E o Xaxim?',
+                'footer.contact.title': 'Contato Direto',
+                'footer.contact.location': '📍 São Paulo, Brasil',
+                'footer.copyright': '© 2025 COQUIM - Orgânico & Sustentável. Todos os direitos reservados.'
+            },
+
+            en: {
+                // Navigation
+                'nav.home': 'Home',
+                'nav.about': 'About',
+                'nav.products': 'Products',
+                'nav.xaxim': 'Xaxim',
+                'nav.contact': 'Contact',
+
+                // Breadcrumb
+                'breadcrumb.home': 'Home',
+                'breadcrumb.contact': 'Contact',
+
+                // Hero Section
+                'hero.title': 'Contact Us',
+                'hero.subtitle': 'We are ready to meet your needs and clarify all your questions about our ecological products',
+
+                // Contact Information
+                'contact.info.title': 'Contact Information',
+                'contact.info.address.title': 'Address',
+                'contact.info.address.location': 'São Paulo - SP, Brazil',
+                'contact.info.address.region': 'Metropolitan Region',
+                'contact.info.address.note': 'Complete address provided upon contact',
+                'contact.info.phone.title': 'Phone',
+                'contact.info.phone.description': 'Commercial service',
+                'contact.info.phone.hours': 'Monday to Friday: 8am to 6pm',
+                'contact.info.email.title': 'Email',
+                'contact.info.email.response': 'We respond within 24 hours',
+                'contact.info.email.purpose': 'For quotes and technical questions',
+                'contact.info.website.title': 'Website',
+                'contact.info.website.catalog': 'Complete online catalog',
+                'contact.info.website.specs': 'Technical information and specifications',
+
+                // Hours
+                'contact.hours.title': '🕒 Business Hours',
+                'contact.hours.mon_thu': 'Monday to Thursday',
+                'contact.hours.fri': 'Friday',
+                'contact.hours.sat': 'Saturday',
+                'contact.hours.sun': 'Sunday and Holidays',
+                'contact.hours.closed': 'Closed',
+
+                // Form
+                'form.title': 'Send Your Message',
+                'form.success': '✅ Message sent successfully! We will contact you soon.',
+                'form.name': 'Full Name *',
+                'form.email': 'Email *',
+                'form.phone': 'Phone',
+                'form.company': 'Company',
+                'form.company.placeholder': 'Optional',
+                'form.subject': 'Subject *',
+                'form.subject.placeholder': 'Select subject',
+                'form.subject.product_questions': 'Product questions',
+                'form.subject.quote': 'Quote request',
+                'form.subject.reseller': 'Become a reseller',
+                'form.subject.technical': 'Technical specifications',
+                'form.subject.sustainability': 'Sustainability information',
+                'form.subject.partnerships': 'Partnerships and collaborations',
+                'form.subject.press': 'Press and media',
+                'form.subject.other': 'Other subjects',
+                'form.message': 'Message *',
+                'form.message.placeholder': 'Tell us how we can help you. Be specific about your needs or questions...',
+                'form.submit': 'Send Message',
+                'form.required': '* Required fields',
+                'form.privacy': 'Your data is protected and will not be shared with third parties.',
+
+                // Quick Actions
+                'actions.title': 'How Can We Help?',
+                'actions.quote.title': 'Request Quote',
+                'actions.quote.description': 'Need large quantities or specific products? Request a personalized quote.',
+                'actions.quote.button': 'Request Quote',
+                'actions.reseller.title': 'Become a Reseller',
+                'actions.reseller.description': 'Interested in reselling our products? Learn about our commercial conditions.',
+                'actions.reseller.button': 'Learn More',
+                'actions.technical.title': 'Technical Support',
+                'actions.technical.description': 'Questions about application, installation or technical specifications of products?',
+                'actions.technical.button': 'Talk to Specialist',
+                'actions.partnerships.title': 'Partnerships',
+                'actions.partnerships.description': 'Universities, NGOs and companies interested in sustainable partnerships.',
+                'actions.partnerships.button': 'Propose Partnership',
+
+                // FAQ
+                'faq.title': 'Frequently Asked Questions',
+                'faq.delivery.question': 'Do you deliver throughout Brazil?',
+                'faq.delivery.answer': 'Yes, we serve the entire national territory through our network of authorized distributors and resellers. For special orders, consult shipping conditions and delivery time.',
+                'faq.durability.question': 'What is the durability of coconut fiber products?',
+                'faq.durability.answer': 'Our products have durability similar to traditional xaxim, varying between 2-5 years depending on usage conditions. They are 100% biodegradable at end of life.',
+                'faq.visit.question': 'Can I visit the factory?',
+                'faq.visit.answer': 'Visits are possible by prior appointment. Contact us to schedule a technical visit and learn about our sustainable production process.',
+                'faq.better.question': 'Are the products really better than xaxim?',
+                'faq.better.answer': 'Our products offer characteristics similar to xaxim with important advantages: neutral pH, sustainable origin, constant availability and contribution to environmental preservation.',
+                'faq.training.question': 'Do you offer training on products?',
+                'faq.training.answer': 'Yes, we offer lectures and training for resellers, professional gardeners and enthusiasts. Contact us to schedule a presentation.',
+                'faq.certificates.question': 'How can I obtain certificates and technical reports?',
+                'faq.certificates.answer': 'We provide all technical documentation, quality certificates and laboratory reports. Request through our contact form or email.',
+                'faq.custom.question': 'Do you handle special or customized projects?',
+                'faq.custom.answer': 'Yes, we develop customized solutions for landscaping projects, vertical gardening and specific applications. Consult our technical team.',
+
+                // Map
+                'map.title': 'Our Location',
+                'map.description': 'We are located in the metropolitan region of São Paulo, strategically positioned to serve all of Brazil.',
+                'map.interactive': 'Interactive Map',
+                'map.location': 'São Paulo - SP, Brazil',
+                'map.integration': 'Google Maps integration will be implemented here',
+
+                // Footer
+                'footer.company.description': 'Pioneer in ecological gardening products since 1996. Committed to sustainability and service excellence.',
+                'footer.company.hours_title': 'Business Hours:',
+                'footer.company.weekdays': 'Monday to Friday: 8am to 6pm',
+                'footer.company.saturday': 'Saturday: 9am to 1pm',
+                'footer.service.title': 'Service',
+                'footer.service.contact': 'Contact Us',
+                'footer.service.quote': 'Request Quote',
+                'footer.service.reseller': 'Become a Reseller',
+                'footer.service.support': 'Technical Support',
+                'footer.company.title': 'Company',
+                'footer.company.about': 'About Us',
+                'footer.company.products': 'Products',
+                'footer.company.certifications': 'Certifications',
+                'footer.company.xaxim': 'What about Xaxim?',
+                'footer.contact.title': 'Direct Contact',
+                'footer.contact.location': '📍 São Paulo, Brazil',
+                'footer.copyright': '© 2025 COQUIM - Organic & Sustainable. All rights reserved.'
+            },
+
+            es: {
+                // Navegación
+                'nav.home': 'Inicio',
+                'nav.about': 'Acerca',
+                'nav.products': 'Productos',
+                'nav.xaxim': 'Xaxim',
+                'nav.contact': 'Contacto',
+
+                // Breadcrumb
+                'breadcrumb.home': 'Inicio',
+                'breadcrumb.contact': 'Contacto',
+
+                // Hero Section
+                'hero.title': 'Contáctanos',
+                'hero.subtitle': 'Estamos listos para atender sus necesidades y aclarar todas sus dudas sobre nuestros productos ecológicos',
+
+                // Información de Contacto
+                'contact.info.title': 'Información de Contacto',
+                'contact.info.address.title': 'Dirección',
+                'contact.info.address.location': 'São Paulo - SP, Brasil',
+                'contact.info.address.region': 'Región Metropolitana',
+                'contact.info.address.note': 'Dirección completa proporcionada al contactar',
+                'contact.info.phone.title': 'Teléfono',
+                'contact.info.phone.description': 'Atención comercial',
+                'contact.info.phone.hours': 'Lunes a Viernes: 8h a 18h',
+                'contact.info.email.title': 'Correo electrónico',
+                'contact.info.email.response': 'Respondemos en hasta 24 horas',
+                'contact.info.email.purpose': 'Para cotizaciones y dudas técnicas',
+                'contact.info.website.title': 'Sitio web',
+                'contact.info.website.catalog': 'Catálogo completo en línea',
+                'contact.info.website.specs': 'Información técnica y especificaciones',
+
+                // Horarios
+                'contact.hours.title': '🕒 Horario de Atención',
+                'contact.hours.mon_thu': 'Lunes a Jueves',
+                'contact.hours.fri': 'Viernes',
+                'contact.hours.sat': 'Sábado',
+                'contact.hours.sun': 'Domingo y Feriados',
+                'contact.hours.closed': 'Cerrado',
+
+                // Formulario
+                'form.title': 'Envía tu Mensaje',
+                'form.success': '✅ ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.',
+                'form.name': 'Nombre Completo *',
+                'form.email': 'Correo electrónico *',
+                'form.phone': 'Teléfono',
+                'form.company': 'Empresa',
+                'form.company.placeholder': 'Opcional',
+                'form.subject': 'Asunto *',
+                'form.subject.placeholder': 'Selecciona el asunto',
+                'form.subject.product_questions': 'Dudas sobre productos',
+                'form.subject.quote': 'Solicitud de cotización',
+                'form.subject.reseller': 'Quiero ser revendedor',
+                'form.subject.technical': 'Especificaciones técnicas',
+                'form.subject.sustainability': 'Información sobre sostenibilidad',
+                'form.subject.partnerships': 'Alianzas y colaboraciones',
+                'form.subject.press': 'Prensa y medios',
+                'form.subject.other': 'Otros asuntos',
+                'form.message': 'Mensaje *',
+                'form.message.placeholder': 'Cuéntanos cómo podemos ayudarte. Sé específico sobre tus necesidades o dudas...',
+                'form.submit': 'Enviar Mensaje',
+                'form.required': '* Campos obligatorios',
+                'form.privacy': 'Tus datos están protegidos y no serán compartidos con terceros.',
+
+                // Acciones Rápidas
+                'actions.title': '¿Cómo Podemos Ayudar?',
+                'actions.quote.title': 'Solicitar Cotización',
+                'actions.quote.description': '¿Necesitas grandes cantidades o productos específicos? Solicita una cotización personalizada.',
+                'actions.quote.button': 'Solicitar Cotización',
+                'actions.reseller.title': 'Hazte Revendedor',
+                'actions.reseller.description': '¿Interesado en revender nuestros productos? Conoce nuestras condiciones comerciales.',
+                'actions.reseller.button': 'Saber Más',
+                'actions.technical.title': 'Soporte Técnico',
+                'actions.technical.description': '¿Dudas sobre aplicación, instalación o especificaciones técnicas de los productos?',
+                'actions.technical.button': 'Hablar con Especialista',
+                'actions.partnerships.title': 'Alianzas',
+                'actions.partnerships.description': 'Universidades, ONGs y empresas interesadas en alianzas sostenibles.',
+                'actions.partnerships.button': 'Proponer Alianza',
+
+                // FAQ
+                'faq.title': 'Preguntas Frecuentes',
+                'faq.delivery.question': '¿Hacen entrega en todo Brasil?',
+                'faq.delivery.answer': 'Sí, atendemos todo el territorio nacional a través de nuestra red de distribuidores y revendedores autorizados. Para pedidos especiales, consulte condiciones de envío y plazo de entrega.',
+                'faq.durability.question': '¿Cuál es la durabilidad de los productos de fibra de coco?',
+                'faq.durability.answer': 'Nuestros productos tienen durabilidad similar al xaxim tradicional, variando entre 2-5 años dependiendo de las condiciones de uso. Son 100% biodegradables al final de su vida útil.',
+                'faq.visit.question': '¿Puedo visitar la fábrica?',
+                'faq.visit.answer': 'Las visitaciones son posibles mediante cita previa. Contáctanos para agendar una visita técnica y conocer nuestro proceso productivo sostenible.',
+                'faq.better.question': '¿Los productos son realmente mejores que el xaxim?',
+                'faq.better.answer': 'Nuestros productos ofrecen características similares al xaxim con ventajas importantes: pH neutro, origen sostenible, disponibilidad constante y contribución a la preservación ambiental.',
+                'faq.training.question': '¿Ofrecen capacitación sobre los productos?',
+                'faq.training.answer': 'Sí, ofrecemos charlas y capacitaciones para revendedores, jardineros profesionales y entusiastas. Contáctanos para agendar una presentación.',
+                'faq.certificates.question': '¿Cómo puedo obtener certificados y informes técnicos?',
+                'faq.certificates.answer': 'Proporcionamos toda la documentación técnica, certificados de calidad e informes de laboratorio. Solicita a través de nuestro formulario de contacto o correo electrónico.',
+                'faq.custom.question': '¿Atienden proyectos especiales o personalizados?',
+                'faq.custom.answer': 'Sí, desarrollamos soluciones personalizadas para proyectos de paisajismo, jardinería vertical y aplicaciones específicas. Consulta a nuestro equipo técnico.',
+
+                // Mapa
+                'map.title': 'Nuestra Ubicación',
+                'map.description': 'Estamos ubicados en la región metropolitana de São Paulo, estratégicamente posicionados para atender todo Brasil.',
+                'map.interactive': 'Mapa Interactivo',
+                'map.location': 'São Paulo - SP, Brasil',
+                'map.integration': 'La integración con Google Maps será implementada aquí',
+
+                // Footer
+                'footer.company.description': 'Pionera en productos ecológicos para jardinería desde 1996. Comprometida con la sostenibilidad y excelencia en el servicio.',
+                'footer.company.hours_title': 'Horario de Atención:',
+                'footer.company.weekdays': 'Lunes a Viernes: 8h a 18h',
+                'footer.company.saturday': 'Sábado: 9h a 13h',
+                'footer.service.title': 'Atención',
+                'footer.service.contact': 'Contáctanos',
+                'footer.service.quote': 'Solicitar Cotización',
+                'footer.service.reseller': 'Hazte Revendedor',
+                'footer.service.support': 'Soporte Técnico',
+                'footer.company.title': 'Empresa',
+                'footer.company.about': 'Acerca de Nosotros',
+                'footer.company.products': 'Productos',
+                'footer.company.certifications': 'Certificaciones',
+                'footer.company.xaxim': '¿Y el Xaxim?',
+                'footer.contact.title': 'Contacto Directo',
+                'footer.contact.location': '📍 São Paulo, Brasil',
+                'footer.copyright': '© 2025 COQUIM - Orgánico & Sostenible. Todos los derechos reservados.'
+            }
+        };
+
+        // Função para traduzir elementos
+        function translateElement(element, lang) {
+            const key = element.getAttribute('data-i18n');
+            if (key && translations[lang] && translations[lang][key]) {
+                const parts = key.split('::');
+                const translationKey = parts[0];
+                const attribute = parts[1];
+                
+                if (attribute && attribute === 'placeholder') {
+                    element.placeholder = translations[lang][translationKey];
+                } else {
+                    element.textContent = translations[lang][translationKey];
+                }
+            }
+        }
+
+        // Função para traduzir toda a página
+        function translatePage(lang) {
+            // Traduzir todos os elementos com data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                translateElement(element, lang);
+            });
+
+            // Atualizar atributos de título e meta
+            const titleTranslations = {
+                pt: 'Contato COQUIM - Fale Conosco | Produtos Ecológicos para Jardinagem',
+                en: 'Contact COQUIM - Contact Us | Ecological Products for Gardening',
+                es: 'Contacto COQUIM - Contáctanos | Productos Ecológicos para Jardinería'
+            };
+
+            const descriptionTranslations = {
+                pt: 'Entre em contato com a COQUIM. Tire suas dúvidas sobre nossos produtos de fibra de coco, solicite orçamentos e conheça nossos pontos de venda.',
+                en: 'Contact COQUIM. Get answers about our coconut fiber products, request quotes and learn about our sales points.',
+                es: 'Contacta con COQUIM. Resuelve tus dudas sobre nuestros productos de fibra de coco, solicita cotizaciones y conoce nuestros puntos de venta.'
+            };
+
+            document.title = titleTranslations[lang];
+            document.querySelector('meta[name="description"]').setAttribute('content', descriptionTranslations[lang]);
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-ES';
+        }
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
@@ -999,6 +1557,68 @@
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+            }
+        });
+
+        // Language Selector Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const languageSelector = document.getElementById('language-selector');
+            const languageBtn = document.getElementById('language-btn');
+            const languageDropdown = document.getElementById('language-dropdown');
+            const languageOptions = document.querySelectorAll('.language-option');
+
+            // Toggle dropdown
+            languageBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                languageSelector.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!languageSelector.contains(e.target)) {
+                    languageSelector.classList.remove('active');
+                }
+            });
+
+            // Handle language selection
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const selectedLang = this.dataset.lang;
+                    const selectedFlag = this.querySelector('.flag-icon').src;
+                    const selectedText = this.querySelector('span').textContent;
+
+                    // Update button
+                    const btnFlag = languageBtn.querySelector('.flag-icon');
+                    const btnText = languageBtn.querySelector('.language-text');
+
+                    btnFlag.src = selectedFlag;
+                    btnFlag.alt = selectedText;
+                    btnText.textContent = selectedLang.toUpperCase();
+
+                    // Update active state
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Close dropdown
+                    languageSelector.classList.remove('active');
+
+                    // Translate the page
+                    translatePage(selectedLang);
+
+                    // Store language preference
+                    localStorage.setItem('selectedLanguage', selectedLang);
+                });
+            });
+
+            // Load saved language on page load
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'pt';
+            if (savedLanguage !== 'pt') {
+                const savedOption = document.querySelector(`[data-lang="${savedLanguage}"]`);
+                if (savedOption) {
+                    savedOption.click();
+                }
             }
         });
 

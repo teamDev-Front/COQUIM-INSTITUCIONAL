@@ -22,8 +22,19 @@
             --text-light: #6b7c73;
             --shadow: rgba(45, 90, 61, 0.1);
             --shadow-hover: rgba(45, 90, 61, 0.2);
+            --shadow-deep: rgba(45, 90, 61, 0.3);
             --gradient-primary: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
             --gradient-secondary: linear-gradient(135deg, #6b9080 0%, #a4c3b2 100%);
+            --gradient-hero: linear-gradient(135deg,
+                    rgba(45, 90, 61, 0.95) 0%,
+                    rgba(74, 124, 89, 0.85) 25%,
+                    rgba(107, 144, 128, 0.75) 50%,
+                    rgba(164, 195, 178, 0.85) 75%,
+                    rgba(45, 90, 61, 0.9) 100%);
+            --catalog-gradient: linear-gradient(135deg,
+                    #ffffff 0%,
+                    rgba(244, 241, 232, 0.5) 50%,
+                    #fefcf7 100%);
         }
 
         * {
@@ -44,8 +55,8 @@
             overflow-x: hidden;
         }
 
-        /* Header */
-        .header {
+        /* Header (mantido intacto) */
+         .header {
             position: fixed;
             top: 0;
             width: 100%;
@@ -127,6 +138,126 @@
             width: 100%;
         }
 
+        /* Header Actions Container */
+        .header-actions {
+            position: relative;
+            align-items: center;
+            gap: 1rem;
+        }
+
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            z-index: 1001;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(45, 90, 61, 0.2);
+            border-radius: 25px;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .language-btn:hover {
+            background: rgba(45, 90, 61, 0.1);
+            border-color: var(--primary-green);
+            transform: translateY(-1px);
+        }
+
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-text {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .language-selector.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            min-width: 180px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(45, 90, 61, 0.15);
+            border: 1px solid rgba(45, 90, 61, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .language-selector.active .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .language-option:hover {
+            background: var(--cream);
+            color: var(--primary-green);
+        }
+
+        .language-option.active {
+            background: rgba(45, 90, 61, 0.05);
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .language-option .flag-icon {
+            width: 18px;
+            height: 13px;
+        }
+
+        .check-mark {
+            margin-left: auto;
+            color: var(--primary-green);
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .language-option.active .check-mark {
+            opacity: 1;
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -136,15 +267,16 @@
             cursor: pointer;
         }
 
-
-        /* Hero Section */
+        /* Hero Section - Product Showcase */
         .hero {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            height: 100vh;
+            background: var(--gradient-hero);
             color: white;
-            padding: 12rem 0 6rem;
-            text-align: center;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
+            padding-top: 2rem;
         }
 
         .hero::before {
@@ -154,109 +286,346 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff" opacity="0.15"/><circle cx="60" cy="70" r="2.5" fill="%23ffffff" opacity="0.08"/></svg>') repeat;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23ffffff" opacity="0.15"/><circle cx="60" cy="70" r="2.5" fill="%23ffffff" opacity="0.08"/><circle cx="40" cy="80" r="1.8" fill="%23ffffff" opacity="0.12"/><path d="M10,50 Q30,30 50,50 Q70,70 90,50" stroke="%23ffffff" stroke-width="0.5" fill="none" opacity="0.1"/></svg>') repeat;
+            animation: float-pattern 25s ease-in-out infinite;
         }
 
-        .hero-content {
-            max-width: 800px;
+        @keyframes float-pattern {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(15px, -10px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-10px, 15px) rotate(-1deg);
+            }
+
+            75% {
+                transform: translate(20px, 5px) rotate(0.5deg);
+            }
+        }
+
+        .hero-container {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
             position: relative;
             z-index: 2;
         }
 
+        .hero-content {
+            animation: slideInLeft 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #a4c3b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: textGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(164, 195, 178, 0.4));
+            }
+
+            to {
+                filter: drop-shadow(0 0 40px rgba(164, 195, 178, 0.8));
+            }
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            font-weight: 300;
+            opacity: 0.95;
+            line-height: 1.6;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-stats {
             display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 2rem;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
         }
 
         .hero-stat {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
             text-align: center;
+            min-width: 140px;
+        }
+
+        .hero-stat:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .hero-stat-number {
             font-size: 2.5rem;
-            font-weight: bold;
+            font-weight: 800;
             display: block;
+            background: linear-gradient(135deg, #ffffff 0%, #a4c3b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
         }
 
         .hero-stat-label {
-            font-size: 1rem;
-            opacity: 0.8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: slideInRight 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        .product-showcase {
+            width: 500px;
+            height: 500px;
+            position: relative;
+        }
+
+        .showcase-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            transition: all 0.3s ease;
+            animation: orbitalFloat 8s ease-in-out infinite;
+        }
+
+        .showcase-item:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0s;
+        }
+
+        .showcase-item:nth-child(2) {
+            top: 30%;
+            right: 0;
+            animation-delay: -2s;
+        }
+
+        .showcase-item:nth-child(3) {
+            bottom: 30%;
+            right: 10%;
+            animation-delay: -4s;
+        }
+
+        .showcase-item:nth-child(4) {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: -6s;
+        }
+
+        .showcase-item:nth-child(5) {
+            top: 30%;
+            left: 0;
+            animation-delay: -1s;
+        }
+
+        .showcase-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(30px);
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            animation: centerPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes orbitalFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+
+            50% {
+                transform: translateY(-5px) rotate(-3deg);
+            }
+
+            75% {
+                transform: translateY(-20px) rotate(7deg);
+            }
+        }
+
+        @keyframes centerPulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
         .breadcrumb {
-            background: var(--cream);
-            padding: 1rem 0;
+            background: linear-gradient(135deg, var(--cream) 0%, rgba(164, 195, 178, 0.1) 100%);
+            padding: 1.5rem 0;
+            position: relative;
+        }
+
+        .breadcrumb::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(164, 195, 178, 0.1), transparent);
         }
 
         .breadcrumb-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .breadcrumb-list {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
             color: var(--text-light);
+            font-weight: 500;
         }
 
         .breadcrumb-list a {
             color: var(--primary-green);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .breadcrumb-list a:hover {
+            color: var(--secondary-green);
             text-decoration: underline;
         }
 
         /* Main Content */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
         .main-content {
-            padding: 4rem 0;
+            padding: 6rem 0;
         }
 
-        /* Filter Section */
+        /* Filter Section Premium */
         .filter-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow);
-            margin-bottom: 3rem;
+            background: var(--catalog-gradient);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px var(--shadow);
+            margin-bottom: 4rem;
+            border: 1px solid rgba(164, 195, 178, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(164, 195, 178, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .filter-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .filter-title {
-            font-size: 1.5rem;
+            font-size: 2.2rem;
             color: var(--primary-green);
+            font-weight: 700;
         }
 
         .search-box {
@@ -266,88 +635,136 @@
         }
 
         .search-input {
-            padding: 0.8rem 1rem;
+            padding: 1rem 1.5rem;
             border: 2px solid var(--light-green);
-            border-radius: 25px;
+            border-radius: 30px;
             font-size: 1rem;
-            width: 300px;
-            transition: border-color 0.3s ease;
+            width: 350px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         .search-input:focus {
             outline: none;
             border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+            transform: scale(1.02);
         }
 
         .search-btn {
-            padding: 0.8rem 1.5rem;
-            background: var(--primary-green);
+            padding: 1rem 1.5rem;
+            background: var(--gradient-primary);
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1rem;
+            min-width: 60px;
         }
 
         .search-btn:hover {
-            background: var(--secondary-green);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px var(--shadow-hover);
         }
 
         .filter-tabs {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .filter-tab {
-            padding: 0.8rem 1.5rem;
-            background: transparent;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             border: 2px solid var(--light-green);
-            border-radius: 25px;
+            border-radius: 30px;
             color: var(--primary-green);
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
         }
 
         .filter-tab.active,
         .filter-tab:hover {
-            background: var(--primary-green);
             color: white;
             border-color: var(--primary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--shadow-hover);
         }
 
-        /* Category Grid */
+        .filter-tab.active::before,
+        .filter-tab:hover::before {
+            left: 0;
+        }
+
+        /* Category Grid Premium */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 6rem;
         }
 
         .category-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--catalog-gradient);
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 30px var(--shadow);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 60px var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            border: 1px solid rgba(164, 195, 178, 0.1);
+            position: relative;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(164, 195, 178, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
         }
 
         .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--shadow-hover);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px var(--shadow-hover);
         }
 
         .category-image {
-            height: 200px;
-            background: var(--cream);
+            height: 250px;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--accent-green) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: var(--primary-green);
+            font-size: 5rem;
+            color: white;
             position: relative;
             overflow: hidden;
         }
@@ -359,36 +776,40 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, var(--light-green) 0%, var(--accent-green) 100%);
-            opacity: 0.1;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
         }
 
         .category-content {
-            padding: 2rem;
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .category-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary-green);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .category-description {
             color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         .category-features {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .category-features li {
-            padding: 0.3rem 0;
+            padding: 0.5rem 0;
             color: var(--text-light);
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 2rem;
+            transition: all 0.3s ease;
         }
 
         .category-features li::before {
@@ -397,123 +818,187 @@
             left: 0;
             color: var(--primary-green);
             font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .category-features li:hover {
+            color: var(--primary-green);
+            transform: translateX(5px);
         }
 
         .category-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--cream);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(164, 195, 178, 0.2);
         }
 
         .product-count {
-            background: var(--light-green);
-            color: var(--primary-green);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
             font-weight: 600;
+            box-shadow: 0 5px 15px var(--shadow);
         }
 
         .view-category {
             color: var(--primary-green);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid var(--primary-green);
         }
 
         .view-category:hover {
-            color: var(--secondary-green);
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
         }
 
         /* Section Title */
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary-green);
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
+            font-weight: 700;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--accent-green);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-secondary);
             border-radius: 2px;
         }
 
-        /* Features Section */
+        /* Features Section Premium */
         .features-section {
-            background: var(--cream);
-            padding: 4rem 0;
-            margin-top: 4rem;
+            background: linear-gradient(135deg, var(--cream) 0%, rgba(164, 195, 178, 0.1) 100%);
+            padding: 8rem 0;
+            margin-top: 6rem;
+            position: relative;
+        }
+
+        .features-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 70%, rgba(164, 195, 178, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(107, 144, 128, 0.1) 0%, transparent 50%);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
+            background: var(--catalog-gradient);
+            padding: 3rem 2.5rem;
+            border-radius: 30px;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(164, 195, 178, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(164, 195, 178, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 80px var(--shadow-hover);
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--light-green);
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 15px 35px var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 1;
+            position: relative;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 20px 40px var(--shadow-deep);
         }
 
         .feature-title {
             color: var(--primary-green);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            z-index: 1;
+            position: relative;
         }
 
         .feature-description {
             color: var(--text-light);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            z-index: 1;
+            position: relative;
         }
 
         /* Footer */
         .footer {
-            background: var(--text-dark);
+            background: linear-gradient(135deg, var(--text-dark) 0%, #1a2f20 100%);
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 4rem 0 2rem;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
             color: var(--light-green);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .footer-section p,
@@ -521,6 +1006,7 @@
             color: #ccc;
             text-decoration: none;
             line-height: 1.8;
+            transition: color 0.3s ease;
         }
 
         .footer-section a:hover {
@@ -529,12 +1015,26 @@
 
         .footer-bottom {
             border-top: 1px solid #444;
-            padding-top: 1rem;
+            padding-top: 2rem;
             text-align: center;
             color: #999;
         }
 
-        /* Responsive */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                gap: 4rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -561,18 +1061,50 @@
                 visibility: visible;
             }
 
+            .hero {
+                height: auto;
+                padding: 8rem 0 6rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
             .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .product-showcase {
+                width: 350px;
+                height: 350px;
+            }
+
+            .showcase-item {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .showcase-center {
+                width: 140px;
+                height: 140px;
                 font-size: 2.5rem;
             }
 
             .hero-stats {
-                flex-direction: column;
+                justify-content: center;
                 gap: 1rem;
             }
 
             .filter-header {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 2rem;
                 align-items: stretch;
             }
 
@@ -585,6 +1117,10 @@
                 width: 100%;
             }
 
+            .filter-tabs {
+                justify-content: center;
+            }
+
             .category-grid {
                 grid-template-columns: 1fr;
             }
@@ -592,60 +1128,306 @@
             .nav-container {
                 padding: 1rem;
             }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .filter-section {
+                padding: 2rem;
+            }
+
+            .category-content {
+                padding: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature-card {
+                padding: 2.5rem 2rem;
+            }
         }
 
-        /* Animations */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .product-showcase {
+                width: 280px;
+                height: 280px;
+            }
+
+            .showcase-item {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .showcase-center {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+
+            .hero-stat {
+                min-width: 120px;
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-stat-number {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .filter-title {
+                font-size: 1.8rem;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .category-image {
+                height: 200px;
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Advanced Animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-green);
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px var(--shadow-hover);
+        }
+
+        /* Product counter animation */
+        .product-counter {
+            animation: countUp 2s ease-out forwards;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Filter tab indicator */
+        .filter-tab-indicator {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .filter-tab.active .filter-tab-indicator {
+            opacity: 1;
+            width: 100%;
+        }
+
+        /* Category card number badges */
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <!-- Header -->
+    <!-- Header (mantido intacto) -->
     <header class="header" id="header">
         <nav class="nav-container">
-            <a href="#home" class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon"></div>
             </a>
-           <ul class="nav-menu" id="nav-menu">
-                <li><a href="./index.html" class="nav-link">Home</a></li>
-                <li><a href="./sobre-nos.html" class="nav-link">Sobre</a></li>
-                <li><a href="./produtos.html" class="nav-link">Produtos</a></li>
-                <li><a href="./xaxim.html" class="nav-link">Xaxim</a></li>
-                <li><a href="./contato.html" class="nav-link">Contato</a></li>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="./index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+                <li><a href="./sobre-nos.html" class="nav-link" data-i18n="nav.about">Sobre</a></li>
+                <li><a href="./produtos.html" class="nav-link" data-i18n="nav.products">Produtos</a></li>
+                <li><a href="./xaxim.html" class="nav-link" data-i18n="nav.xaxim">Xaxim</a></li>
+                <li><a href="./contato.html" class="nav-link" data-i18n="nav.contact">Contato</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <div class="header-actions">
+                <!-- Language Selector -->
+                <div class="language-selector" id="language-selector">
+                    <button class="language-btn" id="language-btn">
+                        <img src="./assets/imagens/brasil.png" alt="PT" class="flag-icon">
+                        <span class="language-text">PT</span>
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="language-dropdown">
+                        <a href="#" class="language-option active" data-lang="pt">
+                            <img src="./assets/imagens/brasil.png" alt="Português" class="flag-icon">
+                            <span>Português</span>
+                            <span class="check-mark">✓</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="en">
+                            <img src="./assets/imagens/eua.png" alt="English" class="flag-icon">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="./assets/imagens/espanha.png" alt="Español" class="flag-icon">
+                            <span>Español</span>
+                        </a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            </div>
         </nav>
     </header>
 
-
-    <!-- Hero Section -->
+    <!-- Hero Section Product Showcase -->
     <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Nossos Produtos</h1>
-            <p class="hero-subtitle">Mais de 135 produtos 100% naturais de fibra de coco para todas as suas necessidades
-                de jardinagem</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="hero-stat-number">135+</span>
-                    <span class="hero-stat-label">Produtos</span>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-i18n="products_page.hero.title">Nossos Produtos</h1>
+                <p class="hero-subtitle" data-i18n="products_page.hero.subtitle">Mais de 135 produtos 100% naturais de
+                    fibra de coco para todas as suas
+                    necessidades de jardinagem</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number product-counter">135+</span>
+                        <span class="hero-stat-label" data-i18n="products_page.hero.stats.products">Produtos</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number product-counter">8</span>
+                        <span class="hero-stat-label" data-i18n="products_page.hero.stats.categories">Categorias</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number product-counter">100%</span>
+                        <span class="hero-stat-label" data-i18n="products_page.hero.stats.natural">Natural</span>
+                    </div>
                 </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">8</span>
-                    <span class="hero-stat-label">Categorias</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">100%</span>
-                    <span class="hero-stat-label">Natural</span>
+            </div>
+            <div class="hero-visual">
+                <div class="product-showcase">
+                    <div class="showcase-item">🪴</div>
+                    <div class="showcase-item">📋</div>
+                    <div class="showcase-item">🎋</div>
+                    <div class="showcase-item">🌱</div>
+                    <div class="showcase-item">🧶</div>
+                    <div class="showcase-center">🌿</div>
                 </div>
             </div>
         </div>
@@ -655,9 +1437,9 @@
     <section class="breadcrumb">
         <div class="breadcrumb-container">
             <div class="breadcrumb-list">
-                <a href="index.html">Home</a>
+                <a href="index.html" data-i18n="breadcrumb.home">Home</a>
                 <span>›</span>
-                <span>Produtos</span>
+                <span data-i18n="breadcrumb.products">Produtos</span>
             </div>
         </div>
     </section>
@@ -668,194 +1450,288 @@
             <!-- Filter Section -->
             <section class="filter-section fade-in">
                 <div class="filter-header">
-                    <h2 class="filter-title">Encontre o produto ideal</h2>
+                    <h2 class="filter-title" data-i18n="products_page.filter.title">Encontre o produto ideal</h2>
                     <div class="search-box">
-                        <input type="text" class="search-input" placeholder="Buscar produtos..." id="search-input">
+                        <input type="text" class="search-input" data-i18n="products_page.filter.search_placeholder"
+                            placeholder="Buscar produtos..." id="search-input">
                         <button class="search-btn" id="search-btn">🔍</button>
                     </div>
                 </div>
 
                 <div class="filter-tabs">
-                    <button class="filter-tab active" data-category="all">Todos os Produtos</button>
-                    <button class="filter-tab" data-category="vasos">Vasos</button>
-                    <button class="filter-tab" data-category="placas">Placas</button>
-                    <button class="filter-tab" data-category="estacas">Estacas</button>
-                    <button class="filter-tab" data-category="adubos">Adubos</button>
-                    <button class="filter-tab" data-category="mantas">Mantas</button>
-                    <button class="filter-tab" data-category="kits">Kits</button>
-                    <button class="filter-tab" data-category="cachepots">Cachepots</button>
-                    <button class="filter-tab" data-category="parede">Vasos de Parede</button>
+                    <button class="filter-tab active" data-category="all">
+                        <span data-i18n="products_page.filter.tabs.all">Todos os Produtos</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-category="vasos">
+                        <span data-i18n="products_page.filter.tabs.pots">Vasos</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-category="placas">
+                        <span data-i18n="products_page.filter.tabs.plates">Placas</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-category="estacas">
+                        <span data-i18n="products_page.filter.tabs.stakes">Estacas</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-category="adubos">
+                        <span data-i18n="products_page.filter.tabs.fertilizers">Adubos</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-category="mantas">
+                        <span data-i18n="products_page.filter.tabs.mats">Mantas</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-category="kits">
+                        <span data-i18n="products_page.filter.tabs.kits">Kits</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
+                    <button class="filter-tab" data-category="cachepots">
+                        <span data-i18n="products_page.filter.tabs.cachepots">Cachepots</span>
+                        <div class="filter-tab-indicator"></div>
+                    </button>
                 </div>
             </section>
 
             <!-- Categories Overview -->
             <section class="categories-overview fade-in">
-                <h2 class="section-title">Categorias de Produtos</h2>
+                <h2 class="section-title" data-i18n="products_page.catalog.title">Catálogo de Produtos</h2>
                 <div class="category-grid">
-                    <div class="category-card" data-category="vasos">
-                        <div class="category-image">🪴</div>
+                    <div class="category-card scale-in" data-category="vasos">
+                        <div class="category-image">
+                            <div class="category-badge">25+</div>
+                            🪴
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Vasos</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.pots.title">Vasos</h3>
+                            <p class="category-description" data-i18n="products_page.categories.pots.description">
                                 Vasos de fibra de coco em 10 tamanhos padronizados, ideais para orquídeas,
                                 samambaias, cactos e plantas decorativas.
                             </p>
                             <ul class="category-features">
-                                <li>pH neutro (7.0)</li>
-                                <li>Propriedades fungicidas naturais</li>
-                                <li>Excelente drenagem</li>
-                                <li>Permite penetração das raízes</li>
+                                <li data-i18n="products_page.categories.pots.features.ph">pH neutro (7.0)</li>
+                                <li data-i18n="products_page.categories.pots.features.fungicidal">Propriedades
+                                    fungicidas naturais</li>
+                                <li data-i18n="products_page.categories.pots.features.drainage">Excelente drenagem</li>
+                                <li data-i18n="products_page.categories.pots.features.roots">Permite penetração das
+                                    raízes</li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">25+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.pots.count">25+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="category-card" data-category="placas">
-                        <div class="category-image">📋</div>
+                    <div class="category-card slide-in-left" data-category="placas">
+                        <div class="category-image">
+                            <div class="category-badge">18+</div>
+                            📋
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Placas</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.plates.title">Placas</h3>
+                            <p class="category-description" data-i18n="products_page.categories.plates.description">
                                 Placas prensadas e lavadas para montagem de orquídeas, bromélias e
                                 plantas epífitas. Disponíveis em 6 tamanhos.
                             </p>
                             <ul class="category-features">
-                                <li>Livre de taninos</li>
-                                <li>Excelente aeração</li>
-                                <li>Fácil re-hidratação</li>
-                                <li>Fixação segura</li>
+                                <li data-i18n="products_page.categories.plates.features.tannin_free">Livre de taninos
+                                </li>
+                                <li data-i18n="products_page.categories.plates.features.aeration">Excelente aeração</li>
+                                <li data-i18n="products_page.categories.plates.features.hydration">Fácil re-hidratação
+                                </li>
+                                <li data-i18n="products_page.categories.plates.features.fixation">Fixação segura</li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">18+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.plates.count">18+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="category-card" data-category="estacas">
-                        <div class="category-image">🎋</div>
+                    <div class="category-card slide-in-right" data-category="estacas">
+                        <div class="category-image">
+                            <div class="category-badge">15+</div>
+                            🎋
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Estacas</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.stakes.title">Estacas</h3>
+                            <p class="category-description" data-i18n="products_page.categories.stakes.description">
                                 Tutores e estacas de 30cm a 150cm para suporte de plantas trepadeiras,
                                 orquídeas, antúrios e filodendros.
                             </p>
                             <ul class="category-features">
-                                <li>Estrutura penetrável</li>
-                                <li>Permite fixação natural das raízes</li>
-                                <li>Núcleo de madeira nos grandes</li>
-                                <li>Longa durabilidade</li>
+                                <li data-i18n="products_page.categories.stakes.features.penetrable">Estrutura penetrável
+                                </li>
+                                <li data-i18n="products_page.categories.stakes.features.natural_fixation">Permite
+                                    fixação natural das raízes</li>
+                                <li data-i18n="products_page.categories.stakes.features.wood_core">Núcleo de madeira nos
+                                    grandes</li>
+                                <li data-i18n="products_page.categories.stakes.features.durability">Longa durabilidade
+                                </li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">15+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.stakes.count">15+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="category-card" data-category="adubos">
-                        <div class="category-image">🌱</div>
+                    <div class="category-card scale-in" data-category="adubos">
+                        <div class="category-image">
+                            <div class="category-badge">12+</div>
+                            🌱
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Adubos</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.fertilizers.title">Adubos
+                            </h3>
+                            <p class="category-description"
+                                data-i18n="products_page.categories.fertilizers.description">
                                 Substratos orgânicos e condicionadores de solo desenvolvidos em
                                 parceria com Ouro Fértil. De 200g a 1kg.
                             </p>
                             <ul class="category-features">
-                                <li>Melhora estrutura do solo</li>
-                                <li>Rica em matéria orgânica</li>
-                                <li>Retenção de nutrientes</li>
-                                <li>Especializado para orquídeas</li>
+                                <li data-i18n="products_page.categories.fertilizers.features.soil_structure">Melhora
+                                    estrutura do solo</li>
+                                <li data-i18n="products_page.categories.fertilizers.features.organic_matter">Rica em
+                                    matéria orgânica</li>
+                                <li data-i18n="products_page.categories.fertilizers.features.nutrient_retention">
+                                    Retenção de nutrientes</li>
+                                <li data-i18n="products_page.categories.fertilizers.features.orchid_specialized">
+                                    Especializado para orquídeas</li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">12+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.fertilizers.count">12+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="category-card" data-category="mantas">
-                        <div class="category-image">🧶</div>
+                    <div class="category-card slide-in-left" data-category="mantas">
+                        <div class="category-image">
+                            <div class="category-badge">20+</div>
+                            🧶
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Mantas</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.mats.title">Mantas</h3>
+                            <p class="category-description" data-i18n="products_page.categories.mats.description">
                                 Mantas calandradas, macias e cestas para semeadura, controle de erosão
                                 e arranjos florais. Espessuras de 4mm a 20mm.
                             </p>
                             <ul class="category-features">
-                                <li>Preparação de canteiros</li>
-                                <li>Controle de erosão</li>
-                                <li>Cultivo de microverdes</li>
-                                <li>Projetos artesanais</li>
+                                <li data-i18n="products_page.categories.mats.features.bed_preparation">Preparação de
+                                    canteiros</li>
+                                <li data-i18n="products_page.categories.mats.features.erosion_control">Controle de
+                                    erosão</li>
+                                <li data-i18n="products_page.categories.mats.features.microgreens">Cultivo de
+                                    microverdes</li>
+                                <li data-i18n="products_page.categories.mats.features.crafts">Projetos artesanais</li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">20+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.mats.count">20+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="category-card" data-category="kits">
-                        <div class="category-image">📦</div>
+                    <div class="category-card slide-in-right" data-category="kits">
+                        <div class="category-image">
+                            <div class="category-badge">15+</div>
+                            📦
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Kits</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.kits.title">Kits</h3>
+                            <p class="category-description" data-i18n="products_page.categories.kits.description">
                                 Soluções completas de cultivo incluindo vasos, substratos, sementes
                                 orgânicas e instruções detalhadas.
                             </p>
                             <ul class="category-features">
-                                <li>Kits para ervas (pimenta, manjericão)</li>
-                                <li>Microverdes (repolho, rabanete)</li>
-                                <li>Conjuntos com acessórios</li>
-                                <li>Instruções passo a passo</li>
+                                <li data-i18n="products_page.categories.kits.features.herb_kits">Kits para ervas
+                                    (pimenta, manjericão)</li>
+                                <li data-i18n="products_page.categories.kits.features.microgreens">Microverdes (repolho,
+                                    rabanete)</li>
+                                <li data-i18n="products_page.categories.kits.features.accessories">Conjuntos com
+                                    acessórios</li>
+                                <li data-i18n="products_page.categories.kits.features.instructions">Instruções passo a
+                                    passo</li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">15+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.kits.count">15+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="category-card" data-category="cachepots">
-                        <div class="category-image">🏺</div>
+                    <div class="category-card scale-in" data-category="cachepots">
+                        <div class="category-image">
+                            <div class="category-badge">12+</div>
+                            🏺
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Cachepots</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.cachepots.title">Cachepots
+                            </h3>
+                            <p class="category-description" data-i18n="products_page.categories.cachepots.description">
                                 Cachepots decorativos para embelezar seus ambientes internos e externos
                                 com estilo natural e sustentável.
                             </p>
                             <ul class="category-features">
-                                <li>Design decorativo</li>
-                                <li>Uso interno e externo</li>
-                                <li>Diversos tamanhos</li>
-                                <li>Acabamento natural</li>
+                                <li data-i18n="products_page.categories.cachepots.features.decorative">Design decorativo
+                                </li>
+                                <li data-i18n="products_page.categories.cachepots.features.indoor_outdoor">Uso interno e
+                                    externo</li>
+                                <li data-i18n="products_page.categories.cachepots.features.sizes">Diversos tamanhos</li>
+                                <li data-i18n="products_page.categories.cachepots.features.natural_finish">Acabamento
+                                    natural</li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">12+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.cachepots.count">12+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="category-card" data-category="parede">
-                        <div class="category-image">🖼️</div>
+                    <div class="category-card slide-in-left" data-category="parede">
+                        <div class="category-image">
+                            <div class="category-badge">8+</div>
+                            🖼️
+                        </div>
                         <div class="category-content">
-                            <h3 class="category-title">Vasos de Parede</h3>
-                            <p class="category-description">
+                            <h3 class="category-title" data-i18n="products_page.categories.wall_pots.title">Vasos de
+                                Parede</h3>
+                            <p class="category-description" data-i18n="products_page.categories.wall_pots.description">
                                 Vasos especiais para fixação em paredes, ideais para jardins verticais
                                 e decoração de ambientes pequenos.
                             </p>
                             <ul class="category-features">
-                                <li>Fixação em paredes</li>
-                                <li>Jardins verticais</li>
-                                <li>Otimização de espaço</li>
-                                <li>Facilidade de instalação</li>
+                                <li data-i18n="products_page.categories.wall_pots.features.wall_fixing">Fixação em
+                                    paredes</li>
+                                <li data-i18n="products_page.categories.wall_pots.features.vertical_gardens">Jardins
+                                    verticais</li>
+                                <li data-i18n="products_page.categories.wall_pots.features.space_optimization">
+                                    Otimização de espaço</li>
+                                <li data-i18n="products_page.categories.wall_pots.features.easy_installation">Facilidade
+                                    de instalação</li>
                             </ul>
                             <div class="category-meta">
-                                <span class="product-count">8+ produtos</span>
-                                <a href="#" class="view-category">Ver produtos →</a>
+                                <span class="product-count" data-i18n="products_page.categories.wall_pots.count">8+
+                                    produtos</span>
+                                <a href="#" class="view-category" data-i18n="products_page.categories.view_products">Ver
+                                    produtos →</a>
                             </div>
                         </div>
                     </div>
@@ -867,12 +1743,12 @@
     <!-- Features Section -->
     <section class="features-section">
         <div class="container">
-            <h2 class="section-title">Por que escolher COQUIM?</h2>
+            <h2 class="section-title" data-i18n="products_page.features.title">Por que escolher COQUIM?</h2>
             <div class="features-grid">
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🌿</div>
-                    <h3 class="feature-title">100% Natural</h3>
-                    <p class="feature-description">
+                    <h3 class="feature-title" data-i18n="products_page.features.natural.title">100% Natural</h3>
+                    <p class="feature-description" data-i18n="products_page.features.natural.description">
                         Todos os produtos são feitos exclusivamente de fibra de coco e látex natural,
                         sem aditivos químicos ou materiais sintéticos.
                     </p>
@@ -880,8 +1756,8 @@
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">♻️</div>
-                    <h3 class="feature-title">Biodegradável</h3>
-                    <p class="feature-description">
+                    <h3 class="feature-title" data-i18n="products_page.features.biodegradable.title">Biodegradável</h3>
+                    <p class="feature-description" data-i18n="products_page.features.biodegradable.description">
                         Produtos completamente biodegradáveis que retornam à natureza sem deixar
                         resíduos, contribuindo para um ciclo sustentável.
                     </p>
@@ -889,8 +1765,8 @@
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">⚖️</div>
-                    <h3 class="feature-title">pH Neutro</h3>
-                    <p class="feature-description">
+                    <h3 class="feature-title" data-i18n="products_page.features.ph_neutral.title">pH Neutro</h3>
+                    <p class="feature-description" data-i18n="products_page.features.ph_neutral.description">
                         pH neutro (7.0) ideal para a maioria das plantas, proporcionando ambiente
                         equilibrado para crescimento saudável.
                     </p>
@@ -898,8 +1774,9 @@
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🛡️</div>
-                    <h3 class="feature-title">Propriedades Naturais</h3>
-                    <p class="feature-description">
+                    <h3 class="feature-title" data-i18n="products_page.features.natural_properties.title">Propriedades
+                        Naturais</h3>
+                    <p class="feature-description" data-i18n="products_page.features.natural_properties.description">
                         Características fungicidas e bactericidas naturais da fibra de coco
                         protegem as plantas contra doenças.
                     </p>
@@ -907,8 +1784,9 @@
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">💧</div>
-                    <h3 class="feature-title">Retenção de Umidade</h3>
-                    <p class="feature-description">
+                    <h3 class="feature-title" data-i18n="products_page.features.moisture_retention.title">Retenção de
+                        Umidade</h3>
+                    <p class="feature-description" data-i18n="products_page.features.moisture_retention.description">
                         Excelente capacidade de retenção de água combinada com boa drenagem,
                         mantendo umidade ideal sem encharcamento.
                     </p>
@@ -916,8 +1794,9 @@
 
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🌱</div>
-                    <h3 class="feature-title">Substitui Xaxim</h3>
-                    <p class="feature-description">
+                    <h3 class="feature-title" data-i18n="products_page.features.xaxim_replacement.title">Substitui Xaxim
+                    </h3>
+                    <p class="feature-description" data-i18n="products_page.features.xaxim_replacement.description">
                         Alternativa sustentável ao xaxim, contribuindo para a preservação da
                         Dicksonia sellowiana, espécie ameaçada de extinção.
                     </p>
@@ -932,44 +1811,542 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>COQUIM</h3>
-                    <p>
+                    <p data-i18n="footer.company_description">
                         Pioneira em produtos ecológicos para jardinagem desde 1996.
                         Comprometida com a sustentabilidade e inovação em fibra de coco
                         e látex natural.
                     </p>
                 </div>
                 <div class="footer-section">
-                    <h3>Categorias</h3>
-                    <p><a href="#" data-category="vasos">Vasos</a></p>
-                    <p><a href="#" data-category="placas">Placas</a></p>
-                    <p><a href="#" data-category="estacas">Estacas</a></p>
-                    <p><a href="#" data-category="adubos">Adubos</a></p>
-                    <p><a href="#" data-category="mantas">Mantas</a></p>
-                    <p><a href="#" data-category="kits">Kits</a></p>
+                    <h3 data-i18n="footer.categories_title">Categorias</h3>
+                    <p><a href="#" data-category="vasos" data-i18n="footer.categories.pots">Vasos</a></p>
+                    <p><a href="#" data-category="placas" data-i18n="footer.categories.plates">Placas</a></p>
+                    <p><a href="#" data-category="estacas" data-i18n="footer.categories.stakes">Estacas</a></p>
+                    <p><a href="#" data-category="adubos" data-i18n="footer.categories.fertilizers">Adubos</a></p>
+                    <p><a href="#" data-category="mantas" data-i18n="footer.categories.mats">Mantas</a></p>
+                    <p><a href="#" data-category="kits" data-i18n="footer.categories.kits">Kits</a></p>
                 </div>
                 <div class="footer-section">
-                    <h3>Empresa</h3>
-                    <p><a href="sobre.html">Sobre Nós</a></p>
-                    <p><a href="certificacoes.html">Certificações</a></p>
-                    <p><a href="xaxim.html">E o Xaxim?</a></p>
-                    <p><a href="blog.html">Blog</a></p>
-                    <p><a href="revendedor.html">Seja Revendedor</a></p>
+                    <h3 data-i18n="footer.company_title">Empresa</h3>
+                    <p><a href="sobre-nos.html" data-i18n="footer.company.about">Sobre Nós</a></p>
+                    <p><a href="certificacoes.html" data-i18n="footer.company.certifications">Certificações</a></p>
+                    <p><a href="xaxim.html" data-i18n="footer.company.xaxim">E o Xaxim?</a></p>
+                    <p><a href="blog.html" data-i18n="footer.company.blog">Blog</a></p>
+                    <p><a href="revendedor.html" data-i18n="footer.company.reseller">Seja Revendedor</a></p>
                 </div>
                 <div class="footer-section">
-                    <h3>Contato</h3>
+                    <h3 data-i18n="footer.contact_title">Contato</h3>
                     <p>📞 +55 (11) 0000-0000</p>
                     <p>✉️ contato@coquim.com.br</p>
                     <p>🌐 www.coquim.com.br</p>
-                    <p>📍 São Paulo, Brasil</p>
+                    <p data-i18n="footer.contact.location">📍 São Paulo, Brasil</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 COQUIM - Orgânico & Sustentável. Todos os direitos reservados.</p>
+                <p data-i18n="footer.copyright">&copy; 2025 COQUIM - Orgânico & Sustentável. Todos os direitos
+                    reservados.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">↑</button>
+
     <script>
+        // ========== SISTEMA DE TRADUÇÕES ==========
+        const translations = {
+            pt: {
+                // Navegação
+                'nav.home': 'Home',
+                'nav.about': 'Sobre',
+                'nav.products': 'Produtos',
+                'nav.xaxim': 'Xaxim',
+                'nav.contact': 'Contato',
+
+                // Breadcrumb
+                'breadcrumb.home': 'Home',
+                'breadcrumb.products': 'Produtos',
+
+                // Hero da Página de Produtos
+                'products_page.hero.title': 'Nossos Produtos',
+                'products_page.hero.subtitle': 'Mais de 135 produtos 100% naturais de fibra de coco para todas as suas necessidades de jardinagem',
+                'products_page.hero.stats.products': 'Produtos',
+                'products_page.hero.stats.categories': 'Categorias',
+                'products_page.hero.stats.natural': 'Natural',
+
+                // Filtros
+                'products_page.filter.title': 'Encontre o produto ideal',
+                'products_page.filter.search_placeholder': 'Buscar produtos...',
+                'products_page.filter.tabs.all': 'Todos os Produtos',
+                'products_page.filter.tabs.pots': 'Vasos',
+                'products_page.filter.tabs.plates': 'Placas',
+                'products_page.filter.tabs.stakes': 'Estacas',
+                'products_page.filter.tabs.fertilizers': 'Adubos',
+                'products_page.filter.tabs.mats': 'Mantas',
+                'products_page.filter.tabs.kits': 'Kits',
+                'products_page.filter.tabs.cachepots': 'Cachepots',
+
+                // Catálogo
+                'products_page.catalog.title': 'Catálogo de Produtos',
+
+                // Categorias - Vasos
+                'products_page.categories.pots.title': 'Vasos',
+                'products_page.categories.pots.description': 'Vasos de fibra de coco em 10 tamanhos padronizados, ideais para orquídeas, samambaias, cactos e plantas decorativas.',
+                'products_page.categories.pots.features.ph': 'pH neutro (7.0)',
+                'products_page.categories.pots.features.fungicidal': 'Propriedades fungicidas naturais',
+                'products_page.categories.pots.features.drainage': 'Excelente drenagem',
+                'products_page.categories.pots.features.roots': 'Permite penetração das raízes',
+                'products_page.categories.pots.count': '25+ produtos',
+
+                // Categorias - Placas
+                'products_page.categories.plates.title': 'Placas',
+                'products_page.categories.plates.description': 'Placas prensadas e lavadas para montagem de orquídeas, bromélias e plantas epífitas. Disponíveis em 6 tamanhos.',
+                'products_page.categories.plates.features.tannin_free': 'Livre de taninos',
+                'products_page.categories.plates.features.aeration': 'Excelente aeração',
+                'products_page.categories.plates.features.hydration': 'Fácil re-hidratação',
+                'products_page.categories.plates.features.fixation': 'Fixação segura',
+                'products_page.categories.plates.count': '18+ produtos',
+
+                // Categorias - Estacas
+                'products_page.categories.stakes.title': 'Estacas',
+                'products_page.categories.stakes.description': 'Tutores e estacas de 30cm a 150cm para suporte de plantas trepadeiras, orquídeas, antúrios e filodendros.',
+                'products_page.categories.stakes.features.penetrable': 'Estrutura penetrável',
+                'products_page.categories.stakes.features.natural_fixation': 'Permite fixação natural das raízes',
+                'products_page.categories.stakes.features.wood_core': 'Núcleo de madeira nos grandes',
+                'products_page.categories.stakes.features.durability': 'Longa durabilidade',
+                'products_page.categories.stakes.count': '15+ produtos',
+
+                // Categorias - Adubos
+                'products_page.categories.fertilizers.title': 'Adubos',
+                'products_page.categories.fertilizers.description': 'Substratos orgânicos e condicionadores de solo desenvolvidos em parceria com Ouro Fértil. De 200g a 1kg.',
+                'products_page.categories.fertilizers.features.soil_structure': 'Melhora estrutura do solo',
+                'products_page.categories.fertilizers.features.organic_matter': 'Rica em matéria orgânica',
+                'products_page.categories.fertilizers.features.nutrient_retention': 'Retenção de nutrientes',
+                'products_page.categories.fertilizers.features.orchid_specialized': 'Especializado para orquídeas',
+                'products_page.categories.fertilizers.count': '12+ produtos',
+
+                // Categorias - Mantas
+                'products_page.categories.mats.title': 'Mantas',
+                'products_page.categories.mats.description': 'Mantas calandradas, macias e cestas para semeadura, controle de erosão e arranjos florais. Espessuras de 4mm a 20mm.',
+                'products_page.categories.mats.features.bed_preparation': 'Preparação de canteiros',
+                'products_page.categories.mats.features.erosion_control': 'Controle de erosão',
+                'products_page.categories.mats.features.microgreens': 'Cultivo de microverdes',
+                'products_page.categories.mats.features.crafts': 'Projetos artesanais',
+                'products_page.categories.mats.count': '20+ produtos',
+
+                // Categorias - Kits
+                'products_page.categories.kits.title': 'Kits',
+                'products_page.categories.kits.description': 'Soluções completas de cultivo incluindo vasos, substratos, sementes orgânicas e instruções detalhadas.',
+                'products_page.categories.kits.features.herb_kits': 'Kits para ervas (pimenta, manjericão)',
+                'products_page.categories.kits.features.microgreens': 'Microverdes (repolho, rabanete)',
+                'products_page.categories.kits.features.accessories': 'Conjuntos com acessórios',
+                'products_page.categories.kits.features.instructions': 'Instruções passo a passo',
+                'products_page.categories.kits.count': '15+ produtos',
+
+                // Categorias - Cachepots
+                'products_page.categories.cachepots.title': 'Cachepots',
+                'products_page.categories.cachepots.description': 'Cachepots decorativos para embelezar seus ambientes internos e externos com estilo natural e sustentável.',
+                'products_page.categories.cachepots.features.decorative': 'Design decorativo',
+                'products_page.categories.cachepots.features.indoor_outdoor': 'Uso interno e externo',
+                'products_page.categories.cachepots.features.sizes': 'Diversos tamanhos',
+                'products_page.categories.cachepots.features.natural_finish': 'Acabamento natural',
+                'products_page.categories.cachepots.count': '12+ produtos',
+
+                // Categorias - Vasos de Parede
+                'products_page.categories.wall_pots.title': 'Vasos de Parede',
+                'products_page.categories.wall_pots.description': 'Vasos especiais para fixação em paredes, ideais para jardins verticais e decoração de ambientes pequenos.',
+                'products_page.categories.wall_pots.features.wall_fixing': 'Fixação em paredes',
+                'products_page.categories.wall_pots.features.vertical_gardens': 'Jardins verticais',
+                'products_page.categories.wall_pots.features.space_optimization': 'Otimização de espaço',
+                'products_page.categories.wall_pots.features.easy_installation': 'Facilidade de instalação',
+                'products_page.categories.wall_pots.count': '8+ produtos',
+
+                // Texto comum para categorias
+                'products_page.categories.view_products': 'Ver produtos →',
+
+                // Features (Vantagens)
+                'products_page.features.title': 'Por que escolher COQUIM?',
+                'products_page.features.natural.title': '100% Natural',
+                'products_page.features.natural.description': 'Todos os produtos são feitos exclusivamente de fibra de coco e látex natural, sem aditivos químicos ou materiais sintéticos.',
+                'products_page.features.biodegradable.title': 'Biodegradável',
+                'products_page.features.biodegradable.description': 'Produtos completamente biodegradáveis que retornam à natureza sem deixar resíduos, contribuindo para um ciclo sustentável.',
+                'products_page.features.ph_neutral.title': 'pH Neutro',
+                'products_page.features.ph_neutral.description': 'pH neutro (7.0) ideal para a maioria das plantas, proporcionando ambiente equilibrado para crescimento saudável.',
+                'products_page.features.natural_properties.title': 'Propriedades Naturais',
+                'products_page.features.natural_properties.description': 'Características fungicidas e bactericidas naturais da fibra de coco protegem as plantas contra doenças.',
+                'products_page.features.moisture_retention.title': 'Retenção de Umidade',
+                'products_page.features.moisture_retention.description': 'Excelente capacidade de retenção de água combinada com boa drenagem, mantendo umidade ideal sem encharcamento.',
+                'products_page.features.xaxim_replacement.title': 'Substitui Xaxim',
+                'products_page.features.xaxim_replacement.description': 'Alternativa sustentável ao xaxim, contribuindo para a preservação da Dicksonia sellowiana, espécie ameaçada de extinção.',
+
+                // Footer
+                'footer.company_description': 'Pioneira em produtos ecológicos para jardinagem desde 1996. Comprometida com a sustentabilidade e inovação em fibra de coco e látex natural.',
+                'footer.categories_title': 'Categorias',
+                'footer.categories.pots': 'Vasos',
+                'footer.categories.plates': 'Placas',
+                'footer.categories.stakes': 'Estacas',
+                'footer.categories.fertilizers': 'Adubos',
+                'footer.categories.mats': 'Mantas',
+                'footer.categories.kits': 'Kits',
+                'footer.company_title': 'Empresa',
+                'footer.company.about': 'Sobre Nós',
+                'footer.company.certifications': 'Certificações',
+                'footer.company.xaxim': 'E o Xaxim?',
+                'footer.company.blog': 'Blog',
+                'footer.company.reseller': 'Seja Revendedor',
+                'footer.contact_title': 'Contato',
+                'footer.contact.location': '📍 São Paulo, Brasil',
+                'footer.copyright': '© 2025 COQUIM - Orgânico & Sustentável. Todos os direitos reservados.',
+
+                // Mensagens do sistema
+                'messages.language_changed': 'Idioma alterado para Português'
+            },
+
+            en: {
+                // Navigation
+                'nav.home': 'Home',
+                'nav.about': 'About',
+                'nav.products': 'Products',
+                'nav.xaxim': 'Xaxim',
+                'nav.contact': 'Contact',
+
+                // Breadcrumb
+                'breadcrumb.home': 'Home',
+                'breadcrumb.products': 'Products',
+
+                // Products Page Hero
+                'products_page.hero.title': 'Our Products',
+                'products_page.hero.subtitle': 'More than 135 100% natural coconut fiber products for all your gardening needs',
+                'products_page.hero.stats.products': 'Products',
+                'products_page.hero.stats.categories': 'Categories',
+                'products_page.hero.stats.natural': 'Natural',
+
+                // Filters
+                'products_page.filter.title': 'Find the ideal product',
+                'products_page.filter.search_placeholder': 'Search products...',
+                'products_page.filter.tabs.all': 'All Products',
+                'products_page.filter.tabs.pots': 'Pots',
+                'products_page.filter.tabs.plates': 'Plates',
+                'products_page.filter.tabs.stakes': 'Stakes',
+                'products_page.filter.tabs.fertilizers': 'Fertilizers',
+                'products_page.filter.tabs.mats': 'Mats',
+                'products_page.filter.tabs.kits': 'Kits',
+                'products_page.filter.tabs.cachepots': 'Cachepots',
+
+                // Catalog
+                'products_page.catalog.title': 'Product Catalog',
+
+                // Categories - Pots
+                'products_page.categories.pots.title': 'Pots',
+                'products_page.categories.pots.description': 'Coconut fiber pots in 10 standardized sizes, ideal for orchids, ferns, cacti and decorative plants.',
+                'products_page.categories.pots.features.ph': 'Neutral pH (7.0)',
+                'products_page.categories.pots.features.fungicidal': 'Natural fungicidal properties',
+                'products_page.categories.pots.features.drainage': 'Excellent drainage',
+                'products_page.categories.pots.features.roots': 'Allows root penetration',
+                'products_page.categories.pots.count': '25+ products',
+
+                // Categories - Plates
+                'products_page.categories.plates.title': 'Plates',
+                'products_page.categories.plates.description': 'Pressed and washed plates for mounting orchids, bromeliads and epiphytic plants. Available in 6 sizes.',
+                'products_page.categories.plates.features.tannin_free': 'Tannin-free',
+                'products_page.categories.plates.features.aeration': 'Excellent aeration',
+                'products_page.categories.plates.features.hydration': 'Easy re-hydration',
+                'products_page.categories.plates.features.fixation': 'Secure fixation',
+                'products_page.categories.plates.count': '18+ products',
+
+                // Categories - Stakes
+                'products_page.categories.stakes.title': 'Stakes',
+                'products_page.categories.stakes.description': 'Tutors and stakes from 30cm to 150cm for supporting climbing plants, orchids, anthuriums and philodendrons.',
+                'products_page.categories.stakes.features.penetrable': 'Penetrable structure',
+                'products_page.categories.stakes.features.natural_fixation': 'Allows natural root fixation',
+                'products_page.categories.stakes.features.wood_core': 'Wood core in large ones',
+                'products_page.categories.stakes.features.durability': 'Long durability',
+                'products_page.categories.stakes.count': '15+ products',
+
+                // Categories - Fertilizers
+                'products_page.categories.fertilizers.title': 'Fertilizers',
+                'products_page.categories.fertilizers.description': 'Organic substrates and soil conditioners developed in partnership with Ouro Fértil. From 200g to 1kg.',
+                'products_page.categories.fertilizers.features.soil_structure': 'Improves soil structure',
+                'products_page.categories.fertilizers.features.organic_matter': 'Rich in organic matter',
+                'products_page.categories.fertilizers.features.nutrient_retention': 'Nutrient retention',
+                'products_page.categories.fertilizers.features.orchid_specialized': 'Specialized for orchids',
+                'products_page.categories.fertilizers.count': '12+ products',
+
+                // Categories - Mats
+                'products_page.categories.mats.title': 'Mats',
+                'products_page.categories.mats.description': 'Calendered, soft mats and baskets for seeding, erosion control and floral arrangements. Thicknesses from 4mm to 20mm.',
+                'products_page.categories.mats.features.bed_preparation': 'Bed preparation',
+                'products_page.categories.mats.features.erosion_control': 'Erosion control',
+                'products_page.categories.mats.features.microgreens': 'Microgreen cultivation',
+                'products_page.categories.mats.features.crafts': 'Craft projects',
+                'products_page.categories.mats.count': '20+ products',
+
+                // Categories - Kits
+                'products_page.categories.kits.title': 'Kits',
+                'products_page.categories.kits.description': 'Complete cultivation solutions including pots, substrates, organic seeds and detailed instructions.',
+                'products_page.categories.kits.features.herb_kits': 'Herb kits (pepper, basil)',
+                'products_page.categories.kits.features.microgreens': 'Microgreens (cabbage, radish)',
+                'products_page.categories.kits.features.accessories': 'Sets with accessories',
+                'products_page.categories.kits.features.instructions': 'Step-by-step instructions',
+                'products_page.categories.kits.count': '15+ products',
+
+                // Categories - Cachepots
+                'products_page.categories.cachepots.title': 'Cachepots',
+                'products_page.categories.cachepots.description': 'Decorative cachepots to beautify your indoor and outdoor environments with natural and sustainable style.',
+                'products_page.categories.cachepots.features.decorative': 'Decorative design',
+                'products_page.categories.cachepots.features.indoor_outdoor': 'Indoor and outdoor use',
+                'products_page.categories.cachepots.features.sizes': 'Various sizes',
+                'products_page.categories.cachepots.features.natural_finish': 'Natural finish',
+                'products_page.categories.cachepots.count': '12+ products',
+
+                // Categories - Wall Pots
+                'products_page.categories.wall_pots.title': 'Wall Pots',
+                'products_page.categories.wall_pots.description': 'Special pots for wall mounting, ideal for vertical gardens and decorating small spaces.',
+                'products_page.categories.wall_pots.features.wall_fixing': 'Wall mounting',
+                'products_page.categories.wall_pots.features.vertical_gardens': 'Vertical gardens',
+                'products_page.categories.wall_pots.features.space_optimization': 'Space optimization',
+                'products_page.categories.wall_pots.features.easy_installation': 'Easy installation',
+                'products_page.categories.wall_pots.count': '8+ products',
+
+                // Common category text
+                'products_page.categories.view_products': 'View products →',
+
+                // Features
+                'products_page.features.title': 'Why choose COQUIM?',
+                'products_page.features.natural.title': '100% Natural',
+                'products_page.features.natural.description': 'All products are made exclusively from coconut fiber and natural latex, without chemical additives or synthetic materials.',
+                'products_page.features.biodegradable.title': 'Biodegradable',
+                'products_page.features.biodegradable.description': 'Completely biodegradable products that return to nature without leaving residues, contributing to a sustainable cycle.',
+                'products_page.features.ph_neutral.title': 'Neutral pH',
+                'products_page.features.ph_neutral.description': 'Neutral pH (7.0) ideal for most plants, providing a balanced environment for healthy growth.',
+                'products_page.features.natural_properties.title': 'Natural Properties',
+                'products_page.features.natural_properties.description': 'Natural fungicidal and bactericidal characteristics of coconut fiber protect plants against diseases.',
+                'products_page.features.moisture_retention.title': 'Moisture Retention',
+                'products_page.features.moisture_retention.description': 'Excellent water retention capacity combined with good drainage, maintaining ideal moisture without waterlogging.',
+                'products_page.features.xaxim_replacement.title': 'Replaces Xaxim',
+                'products_page.features.xaxim_replacement.description': 'Sustainable alternative to xaxim, contributing to the preservation of Dicksonia sellowiana, an endangered species.',
+
+                // Footer
+                'footer.company_description': 'Pioneer in ecological gardening products since 1996. Committed to sustainability and innovation in coconut fiber and natural latex.',
+                'footer.categories_title': 'Categories',
+                'footer.categories.pots': 'Pots',
+                'footer.categories.plates': 'Plates',
+                'footer.categories.stakes': 'Stakes',
+                'footer.categories.fertilizers': 'Fertilizers',
+                'footer.categories.mats': 'Mats',
+                'footer.categories.kits': 'Kits',
+                'footer.company_title': 'Company',
+                'footer.company.about': 'About Us',
+                'footer.company.certifications': 'Certifications',
+                'footer.company.xaxim': 'What about Xaxim?',
+                'footer.company.blog': 'Blog',
+                'footer.company.reseller': 'Become a Reseller',
+                'footer.contact_title': 'Contact',
+                'footer.contact.location': '📍 São Paulo, Brazil',
+                'footer.copyright': '© 2025 COQUIM - Organic & Sustainable. All rights reserved.',
+
+                // System messages
+                'messages.language_changed': 'Language changed to English'
+            },
+
+            es: {
+                // Navegación
+                'nav.home': 'Inicio',
+                'nav.about': 'Acerca',
+                'nav.products': 'Productos',
+                'nav.xaxim': 'Xaxim',
+                'nav.contact': 'Contacto',
+
+                // Breadcrumb
+                'breadcrumb.home': 'Inicio',
+                'breadcrumb.products': 'Productos',
+
+                // Hero de la Página de Productos
+                'products_page.hero.title': 'Nuestros Productos',
+                'products_page.hero.subtitle': 'Más de 135 productos 100% naturales de fibra de coco para todas sus necesidades de jardinería',
+                'products_page.hero.stats.products': 'Productos',
+                'products_page.hero.stats.categories': 'Categorías',
+                'products_page.hero.stats.natural': 'Natural',
+
+                // Filtros
+                'products_page.filter.title': 'Encuentra el producto ideal',
+                'products_page.filter.search_placeholder': 'Buscar productos...',
+                'products_page.filter.tabs.all': 'Todos los Productos',
+                'products_page.filter.tabs.pots': 'Macetas',
+                'products_page.filter.tabs.plates': 'Placas',
+                'products_page.filter.tabs.stakes': 'Estacas',
+                'products_page.filter.tabs.fertilizers': 'Abonos',
+                'products_page.filter.tabs.mats': 'Mantas',
+                'products_page.filter.tabs.kits': 'Kits',
+                'products_page.filter.tabs.cachepots': 'Cachepots',
+
+                // Catálogo
+                'products_page.catalog.title': 'Catálogo de Productos',
+
+                // Categorías - Macetas
+                'products_page.categories.pots.title': 'Macetas',
+                'products_page.categories.pots.description': 'Macetas de fibra de coco en 10 tamaños estandarizados, ideales para orquídeas, helechos, cactus y plantas decorativas.',
+                'products_page.categories.pots.features.ph': 'pH neutro (7.0)',
+                'products_page.categories.pots.features.fungicidal': 'Propiedades fungicidas naturales',
+                'products_page.categories.pots.features.drainage': 'Excelente drenaje',
+                'products_page.categories.pots.features.roots': 'Permite penetración de raíces',
+                'products_page.categories.pots.count': '25+ productos',
+
+                // Categorías - Placas
+                'products_page.categories.plates.title': 'Placas',
+                'products_page.categories.plates.description': 'Placas prensadas y lavadas para montaje de orquídeas, bromelias y plantas epífitas. Disponibles en 6 tamaños.',
+                'products_page.categories.plates.features.tannin_free': 'Libre de taninos',
+                'products_page.categories.plates.features.aeration': 'Excelente aireación',
+                'products_page.categories.plates.features.hydration': 'Fácil rehidratación',
+                'products_page.categories.plates.features.fixation': 'Fijación segura',
+                'products_page.categories.plates.count': '18+ productos',
+
+                // Categorías - Estacas
+                'products_page.categories.stakes.title': 'Estacas',
+                'products_page.categories.stakes.description': 'Tutores y estacas de 30cm a 150cm para soporte de plantas trepadoras, orquídeas, anturios y filodendros.',
+                'products_page.categories.stakes.features.penetrable': 'Estructura penetrable',
+                'products_page.categories.stakes.features.natural_fixation': 'Permite fijación natural de raíces',
+                'products_page.categories.stakes.features.wood_core': 'Núcleo de madera en los grandes',
+                'products_page.categories.stakes.features.durability': 'Larga durabilidad',
+                'products_page.categories.stakes.count': '15+ productos',
+
+                // Categorías - Abonos
+                'products_page.categories.fertilizers.title': 'Abonos',
+                'products_page.categories.fertilizers.description': 'Sustratos orgánicos y acondicionadores de suelo desarrollados en alianza con Ouro Fértil. De 200g a 1kg.',
+                'products_page.categories.fertilizers.features.soil_structure': 'Mejora estructura del suelo',
+                'products_page.categories.fertilizers.features.organic_matter': 'Rico en materia orgánica',
+                'products_page.categories.fertilizers.features.nutrient_retention': 'Retención de nutrientes',
+                'products_page.categories.fertilizers.features.orchid_specialized': 'Especializado para orquídeas',
+                'products_page.categories.fertilizers.count': '12+ productos',
+
+                // Categorías - Mantas
+                'products_page.categories.mats.title': 'Mantas',
+                'products_page.categories.mats.description': 'Mantas calandradas, suaves y cestas para siembra, control de erosión y arreglos florales. Espesores de 4mm a 20mm.',
+                'products_page.categories.mats.features.bed_preparation': 'Preparación de canteros',
+                'products_page.categories.mats.features.erosion_control': 'Control de erosión',
+                'products_page.categories.mats.features.microgreens': 'Cultivo de microverdes',
+                'products_page.categories.mats.features.crafts': 'Proyectos artesanales',
+                'products_page.categories.mats.count': '20+ productos',
+
+                // Categorías - Kits
+                'products_page.categories.kits.title': 'Kits',
+                'products_page.categories.kits.description': 'Soluciones completas de cultivo incluyendo macetas, sustratos, semillas orgánicas e instrucciones detalladas.',
+                'products_page.categories.kits.features.herb_kits': 'Kits para hierbas (pimienta, albahaca)',
+                'products_page.categories.kits.features.microgreens': 'Microverdes (repollo, rábano)',
+                'products_page.categories.kits.features.accessories': 'Conjuntos con accesorios',
+                'products_page.categories.kits.features.instructions': 'Instrucciones paso a paso',
+                'products_page.categories.kits.count': '15+ productos',
+
+                // Categorías - Cachepots
+                'products_page.categories.cachepots.title': 'Cachepots',
+                'products_page.categories.cachepots.description': 'Cachepots decorativos para embellecer sus ambientes internos y externos con estilo natural y sostenible.',
+                'products_page.categories.cachepots.features.decorative': 'Diseño decorativo',
+                'products_page.categories.cachepots.features.indoor_outdoor': 'Uso interno y externo',
+                'products_page.categories.cachepots.features.sizes': 'Varios tamaños',
+                'products_page.categories.cachepots.features.natural_finish': 'Acabado natural',
+                'products_page.categories.cachepots.count': '12+ productos',
+
+                // Categorías - Macetas de Pared
+                'products_page.categories.wall_pots.title': 'Macetas de Pared',
+                'products_page.categories.wall_pots.description': 'Macetas especiales para fijación en paredes, ideales para jardines verticales y decoración de espacios pequeños.',
+                'products_page.categories.wall_pots.features.wall_fixing': 'Fijación en paredes',
+                'products_page.categories.wall_pots.features.vertical_gardens': 'Jardines verticales',
+                'products_page.categories.wall_pots.features.space_optimization': 'Optimización de espacio',
+                'products_page.categories.wall_pots.features.easy_installation': 'Fácil instalación',
+                'products_page.categories.wall_pots.count': '8+ productos',
+
+                // Texto común para categorías
+                'products_page.categories.view_products': 'Ver productos →',
+
+                // Características
+                'products_page.features.title': '¿Por qué elegir COQUIM?',
+                'products_page.features.natural.title': '100% Natural',
+                'products_page.features.natural.description': 'Todos los productos están hechos exclusivamente de fibra de coco y látex natural, sin aditivos químicos o materiales sintéticos.',
+                'products_page.features.biodegradable.title': 'Biodegradable',
+                'products_page.features.biodegradable.description': 'Productos completamente biodegradables que retornan a la naturaleza sin dejar residuos, contribuyendo a un ciclo sostenible.',
+                'products_page.features.ph_neutral.title': 'pH Neutro',
+                'products_page.features.ph_neutral.description': 'pH neutro (7.0) ideal para la mayoría de las plantas, proporcionando ambiente equilibrado para crecimiento saludable.',
+                'products_page.features.natural_properties.title': 'Propiedades Naturales',
+                'products_page.features.natural_properties.description': 'Características fungicidas y bactericidas naturales de la fibra de coco protegen las plantas contra enfermedades.',
+                'products_page.features.moisture_retention.title': 'Retención de Humedad',
+                'products_page.features.moisture_retention.description': 'Excelente capacidad de retención de agua combinada con buen drenaje, manteniendo humedad ideal sin encharcamiento.',
+                'products_page.features.xaxim_replacement.title': 'Sustituye Xaxim',
+                'products_page.features.xaxim_replacement.description': 'Alternativa sostenible al xaxim, contribuyendo a la preservación de Dicksonia sellowiana, especie amenazada de extinción.',
+
+                // Footer
+                'footer.company_description': 'Pionera en productos ecológicos para jardinería desde 1996. Comprometida con la sostenibilidad e innovación en fibra de coco y látex natural.',
+                'footer.categories_title': 'Categorías',
+                'footer.categories.pots': 'Macetas',
+                'footer.categories.plates': 'Placas',
+                'footer.categories.stakes': 'Estacas',
+                'footer.categories.fertilizers': 'Abonos',
+                'footer.categories.mats': 'Mantas',
+                'footer.categories.kits': 'Kits',
+                'footer.company_title': 'Empresa',
+                'footer.company.about': 'Acerca de Nosotros',
+                'footer.company.certifications': 'Certificaciones',
+                'footer.company.xaxim': '¿Y el Xaxim?',
+                'footer.company.blog': 'Blog',
+                'footer.company.reseller': 'Sé Revendedor',
+                'footer.contact_title': 'Contacto',
+                'footer.contact.location': '📍 São Paulo, Brasil',
+                'footer.copyright': '© 2025 COQUIM - Orgánico & Sostenible. Todos los derechos reservados.',
+
+                // Mensajes del sistema
+                'messages.language_changed': 'Idioma cambiado a Español'
+            }
+        };
+
+        // Função para traduzir elementos
+        function translateElement(element, lang) {
+            const key = element.getAttribute('data-i18n');
+            if (key && translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        }
+
+        // Função para traduzir placeholders
+        function translatePlaceholders(lang) {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                const placeholderKey = searchInput.getAttribute('data-i18n');
+                if (placeholderKey && translations[lang] && translations[lang][placeholderKey]) {
+                    searchInput.placeholder = translations[lang][placeholderKey];
+                }
+            }
+        }
+
+        // Função para traduzir toda a página
+        function translatePage(lang) {
+            // Traduzir todos os elementos com data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                translateElement(element, lang);
+            });
+
+            // Traduzir placeholders
+            translatePlaceholders(lang);
+
+            // Atualizar atributos de título e meta
+            const titleTranslations = {
+                pt: 'COQUIM - Produtos | Mais de 135 Produtos Ecológicos para Jardinagem',
+                en: 'COQUIM - Products | Over 135 Ecological Gardening Products',
+                es: 'COQUIM - Productos | Más de 135 Productos Ecológicos para Jardinería'
+            };
+
+            const descriptionTranslations = {
+                pt: 'Descubra mais de 135 produtos ecológicos de fibra de coco da COQUIM. Vasos, placas, estacas, adubos, mantas e kits 100% naturais para jardinagem sustentável.',
+                en: 'Discover over 135 ecological coconut fiber products from COQUIM. Pots, plates, stakes, fertilizers, mats and 100% natural kits for sustainable gardening.',
+                es: 'Descubre más de 135 productos ecológicos de fibra de coco de COQUIM. Macetas, placas, estacas, abonos, mantas y kits 100% naturales para jardinería sostenible.'
+            };
+
+            document.title = titleTranslations[lang];
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                metaDescription.setAttribute('content', descriptionTranslations[lang]);
+            }
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en-US' : 'es-ES';
+        }
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
@@ -989,30 +2366,119 @@
             }
         });
 
-        // Filter functionality
+        // Language Selector Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const languageSelector = document.getElementById('language-selector');
+            const languageBtn = document.getElementById('language-btn');
+            const languageDropdown = document.getElementById('language-dropdown');
+            const languageOptions = document.querySelectorAll('.language-option');
+
+            // Toggle dropdown
+            languageBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                languageSelector.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!languageSelector.contains(e.target)) {
+                    languageSelector.classList.remove('active');
+                }
+            });
+
+            // Handle language selection
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const selectedLang = this.dataset.lang;
+                    const selectedFlag = this.querySelector('.flag-icon').src;
+                    const selectedText = this.querySelector('span').textContent;
+
+                    // Update button
+                    const btnFlag = languageBtn.querySelector('.flag-icon');
+                    const btnText = languageBtn.querySelector('.language-text');
+
+                    btnFlag.src = selectedFlag;
+                    btnFlag.alt = selectedText;
+                    btnText.textContent = selectedLang.toUpperCase();
+
+                    // Update active state
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Close dropdown
+                    languageSelector.classList.remove('active');
+
+                    // Translate the page
+                    translatePage(selectedLang);
+
+                    // Store language preference
+                    localStorage.setItem('selectedLanguage', selectedLang);
+
+                    // Show success message
+                    const message = translations[selectedLang]['messages.language_changed'];
+                    console.log(message);
+                });
+            });
+
+            // Load saved language on page load
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'pt';
+            if (savedLanguage !== 'pt') {
+                const savedOption = document.querySelector(`[data-lang="${savedLanguage}"]`);
+                if (savedOption) {
+                    savedOption.click();
+                }
+            }
+        });
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Filter functionality with enhanced animations
         const filterTabs = document.querySelectorAll('.filter-tab');
         const categoryCards = document.querySelectorAll('.category-card');
 
         filterTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 // Remove active class from all tabs
-                filterTabs.forEach(t => t.classList.remove('active'));
+                filterTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.querySelector('.filter-tab-indicator').style.opacity = '0';
+                });
+
                 // Add active class to clicked tab
                 tab.classList.add('active');
+                tab.querySelector('.filter-tab-indicator').style.opacity = '1';
 
                 const category = tab.dataset.category;
 
-                // Filter category cards
-                categoryCards.forEach(card => {
+                // Filter category cards with staggered animation
+                categoryCards.forEach((card, index) => {
                     if (category === 'all' || card.dataset.category === category) {
                         card.style.display = 'block';
                         setTimeout(() => {
                             card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        }, 50);
+                            card.style.transform = 'translateY(0) scale(1)';
+                        }, index * 100);
                     } else {
                         card.style.opacity = '0';
-                        card.style.transform = 'scale(0.8)';
+                        card.style.transform = 'translateY(20px) scale(0.95)';
                         setTimeout(() => {
                             card.style.display = 'none';
                         }, 300);
@@ -1021,23 +2487,25 @@
             });
         });
 
-        // Search functionality
+        // Enhanced search functionality
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
 
         function performSearch() {
             const searchTerm = searchInput.value.toLowerCase();
 
-            categoryCards.forEach(card => {
+            categoryCards.forEach((card, index) => {
                 const categoryText = card.textContent.toLowerCase();
 
                 if (categoryText.includes(searchTerm)) {
                     card.style.display = 'block';
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                    }, index * 80);
                 } else {
                     card.style.opacity = '0';
-                    card.style.transform = 'scale(0.8)';
+                    card.style.transform = 'translateY(20px) scale(0.95)';
                     setTimeout(() => {
                         card.style.display = 'none';
                     }, 300);
@@ -1045,8 +2513,12 @@
             });
 
             // Reset active filter
-            filterTabs.forEach(t => t.classList.remove('active'));
+            filterTabs.forEach(t => {
+                t.classList.remove('active');
+                t.querySelector('.filter-tab-indicator').style.opacity = '0';
+            });
             document.querySelector('[data-category="all"]').classList.add('active');
+            document.querySelector('[data-category="all"] .filter-tab-indicator').style.opacity = '1';
         }
 
         searchBtn.addEventListener('click', performSearch);
@@ -1056,25 +2528,70 @@
             }
         });
 
-        // Category card click handlers
+        // Real-time search with debouncing
+        let searchTimeout;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(performSearch, 300);
+        });
+
+        // Category card click handlers with enhanced feedback
         categoryCards.forEach(card => {
             card.addEventListener('click', () => {
                 const category = card.dataset.category;
+
+                // Visual feedback
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = 'scale(1)';
+                }, 150);
+
                 // Find and click corresponding filter tab
                 const filterTab = document.querySelector(`[data-category="${category}"]`);
                 if (filterTab) {
                     filterTab.click();
                 }
 
-                // Show alert for demo purposes
-                alert(`Visualizando produtos da categoria: ${card.querySelector('.category-title').textContent}`);
+                // Scroll to filter section
+                document.querySelector('.filter-section').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Show notification (demo purposes)
+                const currentLang = localStorage.getItem('selectedLanguage') || 'pt';
+                const categoryTitle = card.querySelector('.category-title').textContent;
+                showNotification(`${currentLang === 'pt' ? 'Visualizando produtos da categoria:' :
+                    currentLang === 'en' ? 'Viewing products from category:' :
+                        'Visualizando productos de la categoría:'} ${categoryTitle}`);
             });
         });
 
-        // Intersection Observer for fade-in animations
+        // Enhanced product counter animation
+        function animateProductCounters() {
+            const counters = document.querySelectorAll('.product-counter');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/\D/g, ''));
+                const suffix = counter.textContent.replace(/[0-9]/g, '');
+                let current = 0;
+                const increment = target / 60; // 1 second animation
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current) + suffix;
+                }, 16); // ~60fps
+            });
+        }
+
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1085,17 +2602,249 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(el => {
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
             observer.observe(el);
         });
 
-        // Initialize display
-        document.addEventListener('DOMContentLoaded', () => {
-            categoryCards.forEach(card => {
-                card.style.display = 'block';
-                card.style.opacity = '1';
-                card.style.transform = 'scale(1)';
+        // Product showcase orbital animation
+        function initializeProductShowcase() {
+            const showcaseItems = document.querySelectorAll('.showcase-item');
+
+            showcaseItems.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform += ' scale(1.2)';
+                    item.style.zIndex = '10';
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = item.style.transform.replace(' scale(1.2)', '');
+                    item.style.zIndex = '1';
+                });
             });
+        }
+
+        // Enhanced hover effects for category cards
+        categoryCards.forEach(card => {
+            const badge = card.querySelector('.category-badge');
+
+            card.addEventListener('mouseenter', () => {
+                if (badge) {
+                    badge.style.transform = 'scale(1.2) rotate(10deg)';
+                    badge.style.background = 'rgba(45, 90, 61, 0.9)';
+                    badge.style.color = 'white';
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (badge) {
+                    badge.style.transform = 'scale(1) rotate(0deg)';
+                    badge.style.background = 'rgba(255, 255, 255, 0.9)';
+                    badge.style.color = 'var(--primary-green)';
+                }
+            });
+        });
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 2rem;
+                background: var(--gradient-primary);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 50px;
+                box-shadow: 0 10px 30px var(--shadow-hover);
+                z-index: 10000;
+                font-weight: 600;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Parallax effect for hero background pattern
+        let ticking = false;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+
+            if (scrolled < window.innerHeight) {
+                const speed = scrolled * 0.1;
+                document.querySelector('.hero').style.setProperty('--pattern-offset', `${speed}px`);
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Stats animation trigger
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateProductCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            statsObserver.observe(heroStats);
+        }
+
+        // Enhanced feature cards animation
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.03)';
+                const icon = card.querySelector('.feature-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(10deg)';
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                const icon = card.querySelector('.feature-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize all interactive elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial category display
+            categoryCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // Initialize product showcase
+            initializeProductShowcase();
+
+            // Auto-focus search input when filter section comes into view
+            const filterSectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add subtle pulse to search input
+                        const searchInput = document.getElementById('search-input');
+                        searchInput.style.animation = 'none';
+                        setTimeout(() => {
+                            searchInput.style.animation = 'pulse 2s ease-in-out';
+                        }, 500);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const filterSection = document.querySelector('.filter-section');
+            if (filterSection) {
+                filterSectionObserver.observe(filterSection);
+            }
+        });
+
+        // Add pulse animation for search input
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% { 
+                    box-shadow: 0 0 0 0 rgba(45, 90, 61, 0.4);
+                }
+                50% { 
+                    box-shadow: 0 0 0 10px rgba(45, 90, 61, 0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Performance optimization
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        if (reduceMotion.matches) {
+            // Disable intensive animations for users who prefer reduced motion
+            document.querySelectorAll('.showcase-item, .showcase-center').forEach(el => {
+                el.style.animation = 'none';
+            });
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+
+        // Accessibility improvements
+        filterTabs.forEach(tab => {
+            tab.setAttribute('role', 'tab');
+            tab.setAttribute('aria-selected', tab.classList.contains('active'));
+
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+                tab.setAttribute('aria-selected', 'true');
+            });
+        });
+
+        // Keyboard navigation for filter tabs
+        filterTabs.forEach((tab, index) => {
+            tab.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const nextTab = filterTabs[index + 1] || filterTabs[0];
+                    nextTab.focus();
+                    nextTab.click();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    const prevTab = filterTabs[index - 1] || filterTabs[filterTabs.length - 1];
+                    prevTab.focus();
+                    prevTab.click();
+                }
+            });
+        });
+
+        // Make filter tabs focusable
+        filterTabs.forEach(tab => {
+            tab.setAttribute('tabindex', '0');
         });
     </script>
 </body>
