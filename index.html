@@ -1651,6 +1651,192 @@
         .header.scrolled .language-btn:hover {
             background: rgba(45, 90, 61, 0.1);
         }
+
+        /* Gallery Modal Styles */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-media-container {
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .modal-image,
+        .modal-video {
+            max-width: 100%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .modal-image.active,
+        .modal-video.active {
+            display: block;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 10001;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            background: rgba(45, 90, 61, 0.7);
+            border: none;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .modal-nav:hover {
+            background: var(--primary-green);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        /* Responsive Modal */
+        @media (max-width: 768px) {
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                font-size: 35px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .modal-nav {
+                font-size: 25px;
+                padding: 12px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+
+            .modal-image,
+            .modal-video {
+                max-height: 80vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 95%;
+                height: 95%;
+            }
+
+            .modal-nav {
+                font-size: 20px;
+                padding: 10px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .modal-close {
+                font-size: 30px;
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
 
@@ -1867,7 +2053,7 @@
 
                 <!-- Equipe -->
                 <div class="gallery-item" data-category="team">
-                    <img src="./assets/imagens/equipe.JPG" alt="Nossa Equipe" loading="lazy">
+                    <img src="./assets/imagens/equipe.jpg" alt="Nossa Equipe" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-icon">👥</div>
                         <div class="gallery-overlay-text" data-i18n="gallery.items.our_team">Nossa Equipe</div>
@@ -1887,7 +2073,7 @@
 
                 <!-- Produtos -->
                 <div class="gallery-item" data-category="products">
-                    <img src="./assets/imagens/produtos-1.JPG" alt="Nossos Produtos" loading="lazy">
+                    <img src="./assets/imagens/produtos-1.jpg" alt="Nossos Produtos" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-icon">🌱</div>
                         <div class="gallery-overlay-text" data-i18n="gallery.items.our_products">Nossos Produtos</div>
@@ -1908,7 +2094,7 @@
 
                 <!-- Exposições -->
                 <div class="gallery-item" data-category="events">
-                    <img src="./assets/imagens/exposicoes.JPG" alt="Exposições" loading="lazy">
+                    <img src="./assets/imagens/exposicoes.jpg" alt="Exposições" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-icon">🎪</div>
                         <div class="gallery-overlay-text" data-i18n="gallery.items.exhibitions">Exposições</div>
@@ -1917,6 +2103,21 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal para Galeria -->
+    <div id="gallery-modal" class="gallery-modal">
+        <button class="modal-close" id="modal-close" aria-label="Fechar">&times;</button>
+        <div class="modal-content">
+            <div class="modal-media-container">
+                <img id="modal-image" class="modal-image" alt="">
+                <video id="modal-video" class="modal-video" controls>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+            <button class="modal-nav modal-prev" id="modal-prev" aria-label="Anterior">&#10094;</button>
+            <button class="modal-nav modal-next" id="modal-next" aria-label="Próximo">&#10095;</button>
+        </div>
+    </div>
 
     <!-- Certifications -->
     <section class="certifications" id="certifications">
@@ -2685,29 +2886,112 @@
             contactForm.reset();
         });
 
-        // Gallery item click handling with video play/pause
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            const video = item.querySelector('video');
+        // Gallery Modal Functionality
+        const galleryModal = document.getElementById('gallery-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalVideo = document.getElementById('modal-video');
+        const modalClose = document.getElementById('modal-close');
+        const modalPrev = document.getElementById('modal-prev');
+        const modalNext = document.getElementById('modal-next');
+        let currentGalleryItems = [];
+        let currentItemIndex = 0;
 
+        function updateCurrentGalleryItems() {
+            // Get only visible gallery items based on current filter
+            currentGalleryItems = Array.from(document.querySelectorAll('.gallery-item'))
+                .filter(item => item.style.display !== 'none');
+        }
+
+        function openModal(index) {
+            updateCurrentGalleryItems();
+            if (currentGalleryItems.length === 0) return;
+
+            currentItemIndex = index;
+            const item = currentGalleryItems[currentItemIndex];
+            const video = item.querySelector('video');
+            const img = item.querySelector('img');
+
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Hide both elements first
+            modalImage.classList.remove('active');
+            modalVideo.classList.remove('active');
+            modalVideo.pause();
+
+            if (video) {
+                const source = video.querySelector('source');
+                modalVideo.querySelector('source').src = source.src;
+                modalVideo.load();
+                modalVideo.classList.add('active');
+            } else if (img) {
+                modalImage.src = img.src;
+                modalImage.alt = img.alt;
+                modalImage.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = '';
+            modalVideo.pause();
+            modalVideo.querySelector('source').src = '';
+            modalImage.src = '';
+        }
+
+        function showPrevItem() {
+            updateCurrentGalleryItems();
+            currentItemIndex = (currentItemIndex - 1 + currentGalleryItems.length) % currentGalleryItems.length;
+            openModal(currentItemIndex);
+        }
+
+        function showNextItem() {
+            updateCurrentGalleryItems();
+            currentItemIndex = (currentItemIndex + 1) % currentGalleryItems.length;
+            openModal(currentItemIndex);
+        }
+
+        // Gallery item click handling
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
             item.addEventListener('click', () => {
-                if (video) {
-                    if (video.paused) {
-                        // Pause all other videos first
-                        document.querySelectorAll('.gallery-item video').forEach(v => {
-                            if (v !== video) v.pause();
-                        });
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
+                updateCurrentGalleryItems();
+                const visibleIndex = currentGalleryItems.indexOf(item);
+                if (visibleIndex !== -1) {
+                    openModal(visibleIndex);
                 }
             });
 
             // Show/hide overlay on hover for better UX
+            const video = item.querySelector('video');
             if (video) {
                 item.addEventListener('mouseenter', () => {
                     video.currentTime = Math.min(video.duration * 0.1, 3); // Show preview
                 });
+            }
+        });
+
+        // Modal controls
+        modalClose.addEventListener('click', closeModal);
+        modalPrev.addEventListener('click', showPrevItem);
+        modalNext.addEventListener('click', showNextItem);
+
+        // Close modal on background click
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!galleryModal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                showPrevItem();
+            } else if (e.key === 'ArrowRight') {
+                showNextItem();
             }
         });
 
