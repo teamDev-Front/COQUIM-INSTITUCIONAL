@@ -668,10 +668,49 @@
             display: block;
         }
 
-        /* Responsive */
+        /* Responsive - SISTEMA APRIMORADO */
+
+        /* Tablets e dispositivos médios (até 1024px) */
+        @media (max-width: 1024px) {
+            .logo-icon {
+                width: 200px;
+                height: 55px;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .main-content {
+                gap: 3rem;
+            }
+
+            .actions-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+
+            .faq-grid {
+                gap: 2.5rem;
+            }
+        }
+
+        /* Tablets pequenos e mobile landscape (até 768px) */
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
+            }
+
+            .logo-icon {
+                width: 180px;
+                height: 50px;
             }
 
             .nav-menu {
@@ -687,6 +726,7 @@
                 opacity: 0;
                 visibility: hidden;
                 transition: all 0.3s ease;
+                gap: 0.5rem;
             }
 
             .nav-menu.active {
@@ -695,21 +735,84 @@
                 visibility: visible;
             }
 
+            .nav-link {
+                padding: 0.8rem 0;
+                font-size: 1.1rem;
+            }
+
+            .language-selector {
+                margin-right: 1rem;
+            }
+
+            .hero {
+                padding: 10rem 0 6rem;
+                min-height: auto;
+            }
+
             .hero-title {
                 font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .breadcrumb-container {
+                padding: 0 1.5rem;
             }
 
             .main-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                padding: 3rem 0;
             }
 
             .content-section {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .contact-icon {
+                margin-bottom: 1rem;
+            }
+
+            .office-hours {
+                padding: 2rem 1.5rem;
+            }
+
+            .hours-list li {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.3rem;
+                padding: 0.8rem 0;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .action-card {
+                padding: 2rem 1.5rem;
             }
 
             .faq-grid {
@@ -717,7 +820,249 @@
                 gap: 2rem;
             }
 
+            .faq-item {
+                padding: 1.5rem;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+            }
+
+            .map-placeholder {
+                height: 300px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .nav-container {
+                padding: 1rem;
+            }
+        }
+
+        /* Mobile portrait (até 480px) */
+        @media (max-width: 480px) {
+            .logo-icon {
+                width: 150px;
+                height: 42px;
+            }
+
+            .language-btn {
+                padding: 0.5rem 0.7rem;
+                font-size: 0.8rem;
+            }
+
+            .flag-icon {
+                width: 16px;
+                height: 12px;
+            }
+
+            .hero {
+                padding: 8rem 0 5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .breadcrumb-container {
+                padding: 0 1rem;
+            }
+
+            .breadcrumb-list {
+                font-size: 0.9rem;
+            }
+
+            .content-section {
+                padding: 1.5rem 1rem;
+                border-radius: 15px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title::after {
+                width: 50px;
+                height: 3px;
+                bottom: -10px;
+            }
+
+            .contact-info {
+                gap: 1.5rem;
+            }
+
+            .contact-item {
+                padding: 1.2rem;
+            }
+
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .contact-details h3 {
+                font-size: 1.1rem;
+            }
+
+            .contact-details p {
+                font-size: 0.9rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            .form-group label {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.9rem;
+                font-size: 0.95rem;
+                border-radius: 8px;
+            }
+
+            .form-group textarea {
+                min-height: 100px;
+            }
+
+            .btn {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .office-hours {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .office-hours h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .action-card {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .action-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .action-title {
+                font-size: 1.1rem;
+            }
+
+            .action-description {
+                font-size: 0.95rem;
+            }
+
+            .faq-item {
+                padding: 1.2rem;
+            }
+
+            .faq-question {
+                font-size: 0.95rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .faq-answer {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .map-placeholder {
+                height: 250px;
+                font-size: 1rem;
+            }
+
+            .footer {
+                padding: 3rem 0 1.5rem;
+            }
+
+            .footer-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.9rem;
+            }
+
+            .footer-bottom {
+                padding-top: 1.5rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Mobile pequeno (até 360px) */
+        @media (max-width: 360px) {
+            .logo-icon {
+                width: 130px;
+                height: 38px;
+            }
+
+            .nav-container {
+                padding: 0.8rem;
+            }
+
+            .mobile-menu-btn {
+                font-size: 1.3rem;
+            }
+
+            .hero-title {
+                font-size: 1.7rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0 0.8rem;
+            }
+
+            .content-section {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .contact-item {
+                padding: 1rem;
+            }
+
+            .action-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .faq-item {
                 padding: 1rem;
             }
         }
